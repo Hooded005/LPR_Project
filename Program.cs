@@ -16,9 +16,7 @@ namespace Project
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            Console.WriteLine("Hello World 2");
-      
+            Console.WriteLine("Hello World!");      
         }
     }
 }

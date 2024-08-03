@@ -60,5 +60,12 @@ namespace Project
 
             return result.ToString();
         }
+
+        public double[] prepareKnapSack()
+        {
+            double[] obj = objCoefficients.ToArray();
+
+            return obj;
+        }
     }
 }

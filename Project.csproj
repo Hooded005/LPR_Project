@@ -49,6 +49,7 @@
     <Compile Include="BnB.cs" />
     <Compile Include="CuttingPlane.cs" />
     <Compile Include="Knapsack.cs" />
+    <Compile Include="knapsackNode.cs" />
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>

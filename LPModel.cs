@@ -28,7 +28,7 @@ namespace Project
 
             // Objective function
             result.AppendLine(IsMax ? "Maximize" : "Minimize");
-            result.Append("z = ");
+            result.Append("Z = ");
             for (int i = 0; i < objCoefficients.Count; i++)
             {
                 if (i > 0)

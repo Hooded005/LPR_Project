@@ -14,7 +14,7 @@ namespace Project
         [STAThread]
         static void Main()
         {
-            LPModel model = readInput.ParseInputFile("C:\\Users\\seanb\\OneDrive\\Documents\\School\\BC - 3RD\\LPR381\\Project\\Project\\Data\\test.txt");
+            LPModel model = readInput.ParseInputFile("Data/test.txt");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

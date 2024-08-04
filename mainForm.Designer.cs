@@ -36,12 +36,13 @@
             this.btn_knapsack = new System.Windows.Forms.Button();
             this.gb_algorithms = new System.Windows.Forms.GroupBox();
             this.gb_controls = new System.Windows.Forms.GroupBox();
-            this.btn_Write = new System.Windows.Forms.Button();
+            this.btn_save = new System.Windows.Forms.Button();
             this.btn_File = new System.Windows.Forms.Button();
             this.btn_canonical = new System.Windows.Forms.Button();
             this.btn_edit = new System.Windows.Forms.Button();
             this.tb_display = new System.Windows.Forms.RichTextBox();
             this.gb_errors = new System.Windows.Forms.GroupBox();
+            this.btn_Write = new System.Windows.Forms.Button();
             this.gb_algorithms.SuspendLayout();
             this.gb_controls.SuspendLayout();
             this.SuspendLayout();
@@ -138,29 +139,31 @@
             // gb_controls
             // 
             this.gb_controls.Controls.Add(this.btn_Write);
+            this.gb_controls.Controls.Add(this.btn_save);
             this.gb_controls.Controls.Add(this.btn_File);
             this.gb_controls.Controls.Add(this.btn_canonical);
             this.gb_controls.Controls.Add(this.btn_edit);
             this.gb_controls.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gb_controls.ForeColor = System.Drawing.Color.Cyan;
-            this.gb_controls.Location = new System.Drawing.Point(27, 207);
+            this.gb_controls.Location = new System.Drawing.Point(27, 173);
             this.gb_controls.Name = "gb_controls";
-            this.gb_controls.Size = new System.Drawing.Size(212, 203);
+            this.gb_controls.Size = new System.Drawing.Size(212, 246);
             this.gb_controls.TabIndex = 7;
             this.gb_controls.TabStop = false;
             this.gb_controls.Text = "Controls";
             // 
-            // btn_Write
+            // btn_save
             // 
-            this.btn_Write.FlatAppearance.BorderSize = 10;
-            this.btn_Write.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Write.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btn_Write.Location = new System.Drawing.Point(7, 159);
-            this.btn_Write.Name = "btn_Write";
-            this.btn_Write.Size = new System.Drawing.Size(199, 36);
-            this.btn_Write.TabIndex = 6;
-            this.btn_Write.Text = "Write to file";
-            this.btn_Write.UseVisualStyleBackColor = true;
+            this.btn_save.FlatAppearance.BorderSize = 10;
+            this.btn_save.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_save.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.btn_save.Location = new System.Drawing.Point(7, 159);
+            this.btn_save.Name = "btn_save";
+            this.btn_save.Size = new System.Drawing.Size(199, 36);
+            this.btn_save.TabIndex = 6;
+            this.btn_save.Text = "Save";
+            this.btn_save.UseVisualStyleBackColor = true;
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
             // btn_File
             // 
@@ -199,6 +202,7 @@
             this.btn_edit.TabIndex = 2;
             this.btn_edit.Text = "Edit File";
             this.btn_edit.UseVisualStyleBackColor = true;
+            this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
             // 
             // tb_display
             // 
@@ -222,6 +226,18 @@
             this.gb_errors.TabIndex = 9;
             this.gb_errors.TabStop = false;
             this.gb_errors.Text = "Errors";
+            // 
+            // btn_Write
+            // 
+            this.btn_Write.FlatAppearance.BorderSize = 10;
+            this.btn_Write.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Write.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.btn_Write.Location = new System.Drawing.Point(7, 201);
+            this.btn_Write.Name = "btn_Write";
+            this.btn_Write.Size = new System.Drawing.Size(199, 36);
+            this.btn_Write.TabIndex = 7;
+            this.btn_Write.Text = "Save Output";
+            this.btn_Write.UseVisualStyleBackColor = true;
             // 
             // mainForm
             // 
@@ -257,8 +273,9 @@
         private System.Windows.Forms.Button btn_canonical;
         private System.Windows.Forms.Button btn_edit;
         private System.Windows.Forms.RichTextBox tb_display;
-        private System.Windows.Forms.Button btn_Write;
+        private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.GroupBox gb_errors;
+        private System.Windows.Forms.Button btn_Write;
     }
 }
 

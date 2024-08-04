@@ -117,6 +117,7 @@
             this.btn_knapsack.TabIndex = 5;
             this.btn_knapsack.Text = "Knapsack";
             this.btn_knapsack.UseVisualStyleBackColor = true;
+            this.btn_knapsack.Click += new System.EventHandler(this.btn_knapsack_Click);
             // 
             // gb_algorithms
             // 

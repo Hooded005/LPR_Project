@@ -36,6 +36,8 @@ namespace Project
             Console.WriteLine("Z = " + z);
             
             Console.WriteLine("Decision Variables: " + string.Join(", ", decVar));
+
+            Application.Run(new mainForm());
         }
     }
 }

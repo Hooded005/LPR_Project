@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Project
 {
     internal class Knapsack
     {
         // Solve the 0/1 Knapsack problem using dynamic programming
-        public static (double maxValue, List<int> bestItems) BranchAndBoundKnapsack(List<double> values, List<double> weights, double capacity)
+        public static (double maxValue, List<int> bestItems) BranchAndBoundKnapsack(List<double> values, List<double> weights, double capacity, RichTextBox outputBox)
         {
             int n = values.Count;
             double maxProfit = 0;
@@ -70,7 +71,7 @@ namespace Project
                 {
                     v.IncludedItems[i] += 1;
                 }
-                DisplayNode(u, v);
+                DisplayNode(outputBox, u, v);
             }
 
             for (int i = 0; i < bestItems.Count; i++)
@@ -99,10 +100,10 @@ namespace Project
             return profitBound;
         }
 
-        private static void DisplayNode(knapsackNode u, knapsackNode v)
+        private static void DisplayNode(RichTextBox outputBox, knapsackNode u, knapsackNode v)
         {
-            Console.WriteLine($"Current Branch - Level: {u.Level}, Profit: {u.Profit}, Weight: {u.Weight}, Bound: {u.Bound}" +
-                $"\nNext Branch - Level: {v.Level}, Profit: {v.Profit}, Weight: {v.Weight}, Bound: {v.Bound}, Included Items: {string.Join(", ", v.IncludedItems)}\n");
+            string output = $"\nCurrent Branch - Level: {u.Level}, Profit: {u.Profit}, \nTotal Weight: {u.Weight}, Weight Left Over: {40 - u.Weight}, \nIncluded Items: {string.Join(", ", v.IncludedItems)}\n";
+            outputBox.AppendText(output);
         }
     }
 

@@ -38,10 +38,10 @@ namespace Project
 
             //var(z, decVar) = Revised.revisedSimplex(model);
 
-            var (z, decVar) = Knapsack.BranchAndBoundKnapsack(obj, con, RHS);
+            //var (z, decVar) = Knapsack.BranchAndBoundKnapsack(obj, con, RHS,);
 
-            Console.WriteLine("Z = " + z);            
-            Console.WriteLine("Decision Variables: " + string.Join(", ", decVar));
+            //Console.WriteLine("Z = " + z);            
+            //Console.WriteLine("Decision Variables: " + string.Join(", ", decVar));
 
             Application.Run(new mainForm());
         }

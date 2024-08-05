@@ -56,7 +56,7 @@ namespace Project
             // Extract the first constraint's coefficients and RHS as the knapsack capacity
             con = model.cCoefficients[0];
 
-            var (z, decVar) = Knapsack.BranchAndBoundKnapsack(obj, con, RHS);
+            var (z, decVar) = Knapsack.BranchAndBoundKnapsack(obj, con, RHS, tb_display);
 
             lblZans.Text = z.ToString();
             lblDVans.Text = string.Join(", ", decVar);

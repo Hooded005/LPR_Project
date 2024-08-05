@@ -9,11 +9,12 @@ namespace Project
     internal class Knapsack
     {
         // Solve the 0/1 Knapsack problem using dynamic programming
-        public static (double maxValue, List<int> bestItems) BranchAndBoundKnapsack(List<double> values, List<double> weights, double capacity)
+        public static (string nodes, double maxValue, List<int> bestItems) BranchAndBoundKnapsack(List<double> values, List<double> weights, double capacity)
         {
             int n = values.Count;
             double maxProfit = 0;
             List<int> bestItems = new List<int>();
+            string nodes = "";
 
             PriorityQueue<knapsackNode> pq = new PriorityQueue<knapsackNode>((a, b) => b.Bound.CompareTo(a.Bound));
 
@@ -73,7 +74,7 @@ namespace Project
                 {
                     v.IncludedItems[i] += 1;
                 }
-                DisplayNode(u, v);
+                nodes = DisplayNode(u, v);
             }
 
             for (int i = 0; i < bestItems.Count; i++)
@@ -81,7 +82,7 @@ namespace Project
                 bestItems[i] += 1;
             }
 
-            return (maxProfit, bestItems);
+            return (nodes, maxProfit, bestItems);
         }
 
         private static double CalculateBound(knapsackNode u, int n, List<double> values, List<double> weights, double capacity)
@@ -102,11 +103,10 @@ namespace Project
             return profitBound;
         }
 
-        private static void DisplayNode(knapsackNode u, knapsackNode v)
+        private static string DisplayNode(knapsackNode u, knapsackNode v)
         {
-            Console.WriteLine($"Current Branch - Level: {u.Level}, Profit: {u.Profit}, Weight: {u.Weight}, Bound: {u.Bound}");
-            Console.WriteLine($"Next Branch - Level: {v.Level}, Profit: {v.Profit}, Weight: {v.Weight}, Bound: {v.Bound}, Included Items: {string.Join(", ", v.IncludedItems)}");
-            Console.WriteLine();
+            return $"Current Branch - Level: {u.Level}, Profit: {u.Profit}, Weight: {u.Weight}, Bound: {u.Bound}" +
+                $"\nNext Branch - Level: {v.Level}, Profit: {v.Profit}, Weight: {v.Weight}, Bound: {v.Bound}, Included Items: {string.Join(", ", v.IncludedItems)}";
         }
     }
 

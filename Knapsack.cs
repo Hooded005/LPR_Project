@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project
 {
     internal class Knapsack
     {
         // Solve the 0/1 Knapsack problem using dynamic programming
-        public static (string nodes, double maxValue, List<int> bestItems) BranchAndBoundKnapsack(List<double> values, List<double> weights, double capacity)
+        public static (double maxValue, List<int> bestItems) BranchAndBoundKnapsack(List<double> values, List<double> weights, double capacity)
         {
             int n = values.Count;
             double maxProfit = 0;
             List<int> bestItems = new List<int>();
-            string nodes = "";
 
             PriorityQueue<knapsackNode> pq = new PriorityQueue<knapsackNode>((a, b) => b.Bound.CompareTo(a.Bound));
 
@@ -42,7 +38,7 @@ namespace Project
                 if (v.Weight <= capacity && v.Profit > maxProfit)
                 {
                     maxProfit = v.Profit;
-                    bestItems = new List<int>(v.IncludedItems );
+                    bestItems = new List<int>(v.IncludedItems);
                 }
 
                 v.Bound = CalculateBound(v, n, values, weights, capacity);
@@ -74,7 +70,7 @@ namespace Project
                 {
                     v.IncludedItems[i] += 1;
                 }
-                nodes = DisplayNode(u, v);
+                DisplayNode(u, v);
             }
 
             for (int i = 0; i < bestItems.Count; i++)
@@ -82,7 +78,7 @@ namespace Project
                 bestItems[i] += 1;
             }
 
-            return (nodes, maxProfit, bestItems);
+            return (maxProfit, bestItems);
         }
 
         private static double CalculateBound(knapsackNode u, int n, List<double> values, List<double> weights, double capacity)
@@ -103,10 +99,10 @@ namespace Project
             return profitBound;
         }
 
-        private static string DisplayNode(knapsackNode u, knapsackNode v)
+        private static void DisplayNode(knapsackNode u, knapsackNode v)
         {
-            return $"Current Branch - Level: {u.Level}, Profit: {u.Profit}, Weight: {u.Weight}, Bound: {u.Bound}" +
-                $"\nNext Branch - Level: {v.Level}, Profit: {v.Profit}, Weight: {v.Weight}, Bound: {v.Bound}, Included Items: {string.Join(", ", v.IncludedItems)}";
+            Console.WriteLine($"Current Branch - Level: {u.Level}, Profit: {u.Profit}, Weight: {u.Weight}, Bound: {u.Bound}" +
+                $"\nNext Branch - Level: {v.Level}, Profit: {v.Profit}, Weight: {v.Weight}, Bound: {v.Bound}, Included Items: {string.Join(", ", v.IncludedItems)}\n");
         }
     }
 

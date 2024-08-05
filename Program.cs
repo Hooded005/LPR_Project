@@ -31,9 +31,8 @@ namespace Project
             // Extract the first constraint's coefficients and RHS as the knapsack capacity
             con = model.cCoefficients[0];
 
-            var (nodes, z, decVar) = Knapsack.BranchAndBoundKnapsack(obj, con, RHS);
+            var (z, decVar) = Knapsack.BranchAndBoundKnapsack(obj, con, RHS);
 
-            Console.WriteLine("Branches:" + nodes);
             Console.WriteLine("Z = " + z);            
             Console.WriteLine("Decision Variables: " + string.Join(", ", decVar));
         }

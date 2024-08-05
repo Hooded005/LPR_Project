@@ -35,17 +35,19 @@ namespace Project
             if (file.ShowDialog() == DialogResult.OK)
             {
                 path = file.FileName;
+                model = readInput.ParseInputFile(path);
             }
         }
 
         private void btn_canonical_Click(object sender, EventArgs e)
         {
-            model = readInput.ParseInputFile(path);
+            tb_display.Text = "";
             tb_display.Text = model.ConvertToCanonicalForm();
         }
 
         private void btn_knapsack_Click(object sender, EventArgs e)
         {
+            tb_display.Text = "";
             List<double> obj = new List<double>();
             List<double> con = new List<double>();
             double RHS = model.cRHS[0];
@@ -55,6 +57,8 @@ namespace Project
 
             // Extract the first constraint's coefficients and RHS as the knapsack capacity
             con = model.cCoefficients[0];
+
+            tb_display.Text = model.ConvertToCanonicalForm();
 
             var (z, decVar) = Knapsack.BranchAndBoundKnapsack(obj, con, RHS, tb_display);
 

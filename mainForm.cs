@@ -10,6 +10,7 @@ namespace Project
         string path = "";
         LPModel model = new LPModel();
         OpenFileDialog file = new OpenFileDialog();
+        string output = "";
 
         public mainForm()
         {
@@ -34,7 +35,6 @@ namespace Project
             if (file.ShowDialog() == DialogResult.OK)
             {
                 path = file.FileName;
-                MessageBox.Show(path);
             }
         }
 
@@ -60,6 +60,11 @@ namespace Project
 
             lblZans.Text = z.ToString();
             lblDVans.Text = string.Join(", ", decVar);
+
+            output += $"Z: {lblZans.Text}\n" +
+                $"Decision Variables: {lblDVans.Text}\n'" +
+                $"Branches:\n" +
+                $"{tb_display.Text}";
         }
 
         private void btn_edit_Click(object sender, EventArgs e)
@@ -96,5 +101,18 @@ namespace Project
                 MessageBox.Show("No file selected to save.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void btn_Write_Click(object sender, EventArgs e)
+        {
+            file.Title = "Select a file to save to";
+            file.Filter = "Text Files|*.txt";
+
+            if (file.ShowDialog() == DialogResult.OK)
+            {
+                path = file.FileName;
+                File.WriteAllText(path, output);
+            }
+        }
+
     }
 }

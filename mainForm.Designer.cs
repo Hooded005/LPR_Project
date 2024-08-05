@@ -43,10 +43,10 @@
             this.btn_edit = new System.Windows.Forms.Button();
             this.tb_display = new System.Windows.Forms.RichTextBox();
             this.gb_errors = new System.Windows.Forms.GroupBox();
-            this.lblZ = new System.Windows.Forms.Label();
-            this.lblDV = new System.Windows.Forms.Label();
-            this.lblZans = new System.Windows.Forms.Label();
             this.lblDVans = new System.Windows.Forms.Label();
+            this.lblZans = new System.Windows.Forms.Label();
+            this.lblDV = new System.Windows.Forms.Label();
+            this.lblZ = new System.Windows.Forms.Label();
             this.gb_algorithms.SuspendLayout();
             this.gb_controls.SuspendLayout();
             this.gb_errors.SuspendLayout();
@@ -168,6 +168,7 @@
             this.btn_Write.TabIndex = 7;
             this.btn_Write.Text = "Save Output";
             this.btn_Write.UseVisualStyleBackColor = true;
+            this.btn_Write.Click += new System.EventHandler(this.btn_Write_Click);
             // 
             // btn_save
             // 
@@ -248,25 +249,15 @@
             this.gb_errors.TabStop = false;
             this.gb_errors.Text = "Solution";
             // 
-            // lblZ
+            // lblDVans
             // 
-            this.lblZ.AutoSize = true;
-            this.lblZ.ForeColor = System.Drawing.Color.White;
-            this.lblZ.Location = new System.Drawing.Point(6, 27);
-            this.lblZ.Name = "lblZ";
-            this.lblZ.Size = new System.Drawing.Size(45, 23);
-            this.lblZ.TabIndex = 10;
-            this.lblZ.Text = "Z = ";
-            // 
-            // lblDV
-            // 
-            this.lblDV.AutoSize = true;
-            this.lblDV.ForeColor = System.Drawing.Color.White;
-            this.lblDV.Location = new System.Drawing.Point(6, 59);
-            this.lblDV.Name = "lblDV";
-            this.lblDV.Size = new System.Drawing.Size(248, 29);
-            this.lblDV.TabIndex = 11;
-            this.lblDV.Text = "Decision Variables:";
+            this.lblDVans.AutoSize = true;
+            this.lblDVans.ForeColor = System.Drawing.Color.White;
+            this.lblDVans.Location = new System.Drawing.Point(218, 59);
+            this.lblDVans.Name = "lblDVans";
+            this.lblDVans.Size = new System.Drawing.Size(40, 23);
+            this.lblDVans.TabIndex = 13;
+            this.lblDVans.Text = "n/a";
             // 
             // lblZans
             // 
@@ -278,15 +269,25 @@
             this.lblZans.TabIndex = 12;
             this.lblZans.Text = "0";
             // 
-            // lblDVans
+            // lblDV
             // 
-            this.lblDVans.AutoSize = true;
-            this.lblDVans.ForeColor = System.Drawing.Color.White;
-            this.lblDVans.Location = new System.Drawing.Point(218, 59);
-            this.lblDVans.Name = "lblDVans";
-            this.lblDVans.Size = new System.Drawing.Size(40, 23);
-            this.lblDVans.TabIndex = 13;
-            this.lblDVans.Text = "n/a";
+            this.lblDV.AutoSize = true;
+            this.lblDV.ForeColor = System.Drawing.Color.White;
+            this.lblDV.Location = new System.Drawing.Point(6, 59);
+            this.lblDV.Name = "lblDV";
+            this.lblDV.Size = new System.Drawing.Size(198, 23);
+            this.lblDV.TabIndex = 11;
+            this.lblDV.Text = "Decision Variables:";
+            // 
+            // lblZ
+            // 
+            this.lblZ.AutoSize = true;
+            this.lblZ.ForeColor = System.Drawing.Color.White;
+            this.lblZ.Location = new System.Drawing.Point(6, 27);
+            this.lblZ.Name = "lblZ";
+            this.lblZ.Size = new System.Drawing.Size(45, 23);
+            this.lblZ.TabIndex = 10;
+            this.lblZ.Text = "Z = ";
             // 
             // mainForm
             // 

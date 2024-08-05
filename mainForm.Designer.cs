@@ -36,15 +36,20 @@
             this.btn_knapsack = new System.Windows.Forms.Button();
             this.gb_algorithms = new System.Windows.Forms.GroupBox();
             this.gb_controls = new System.Windows.Forms.GroupBox();
+            this.btn_Write = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
             this.btn_File = new System.Windows.Forms.Button();
             this.btn_canonical = new System.Windows.Forms.Button();
             this.btn_edit = new System.Windows.Forms.Button();
             this.tb_display = new System.Windows.Forms.RichTextBox();
             this.gb_errors = new System.Windows.Forms.GroupBox();
-            this.btn_Write = new System.Windows.Forms.Button();
+            this.lblZ = new System.Windows.Forms.Label();
+            this.lblDV = new System.Windows.Forms.Label();
+            this.lblZans = new System.Windows.Forms.Label();
+            this.lblDVans = new System.Windows.Forms.Label();
             this.gb_algorithms.SuspendLayout();
             this.gb_controls.SuspendLayout();
+            this.gb_errors.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl01
@@ -152,6 +157,18 @@
             this.gb_controls.TabStop = false;
             this.gb_controls.Text = "Controls";
             // 
+            // btn_Write
+            // 
+            this.btn_Write.FlatAppearance.BorderSize = 10;
+            this.btn_Write.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Write.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.btn_Write.Location = new System.Drawing.Point(7, 201);
+            this.btn_Write.Name = "btn_Write";
+            this.btn_Write.Size = new System.Drawing.Size(199, 36);
+            this.btn_Write.TabIndex = 7;
+            this.btn_Write.Text = "Save Output";
+            this.btn_Write.UseVisualStyleBackColor = true;
+            // 
             // btn_save
             // 
             this.btn_save.FlatAppearance.BorderSize = 10;
@@ -218,26 +235,58 @@
             // gb_errors
             // 
             this.gb_errors.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.gb_errors.Controls.Add(this.lblDVans);
+            this.gb_errors.Controls.Add(this.lblZans);
+            this.gb_errors.Controls.Add(this.lblDV);
+            this.gb_errors.Controls.Add(this.lblZ);
             this.gb_errors.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gb_errors.ForeColor = System.Drawing.Color.Red;
+            this.gb_errors.ForeColor = System.Drawing.Color.White;
             this.gb_errors.Location = new System.Drawing.Point(281, 547);
             this.gb_errors.Name = "gb_errors";
             this.gb_errors.Size = new System.Drawing.Size(773, 115);
             this.gb_errors.TabIndex = 9;
             this.gb_errors.TabStop = false;
-            this.gb_errors.Text = "Errors";
+            this.gb_errors.Text = "Solution";
             // 
-            // btn_Write
+            // lblZ
             // 
-            this.btn_Write.FlatAppearance.BorderSize = 10;
-            this.btn_Write.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Write.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btn_Write.Location = new System.Drawing.Point(7, 201);
-            this.btn_Write.Name = "btn_Write";
-            this.btn_Write.Size = new System.Drawing.Size(199, 36);
-            this.btn_Write.TabIndex = 7;
-            this.btn_Write.Text = "Save Output";
-            this.btn_Write.UseVisualStyleBackColor = true;
+            this.lblZ.AutoSize = true;
+            this.lblZ.ForeColor = System.Drawing.Color.White;
+            this.lblZ.Location = new System.Drawing.Point(6, 27);
+            this.lblZ.Name = "lblZ";
+            this.lblZ.Size = new System.Drawing.Size(45, 23);
+            this.lblZ.TabIndex = 10;
+            this.lblZ.Text = "Z = ";
+            // 
+            // lblDV
+            // 
+            this.lblDV.AutoSize = true;
+            this.lblDV.ForeColor = System.Drawing.Color.White;
+            this.lblDV.Location = new System.Drawing.Point(6, 59);
+            this.lblDV.Name = "lblDV";
+            this.lblDV.Size = new System.Drawing.Size(248, 29);
+            this.lblDV.TabIndex = 11;
+            this.lblDV.Text = "Decision Variables:";
+            // 
+            // lblZans
+            // 
+            this.lblZans.AutoSize = true;
+            this.lblZans.ForeColor = System.Drawing.Color.White;
+            this.lblZans.Location = new System.Drawing.Point(47, 27);
+            this.lblZans.Name = "lblZans";
+            this.lblZans.Size = new System.Drawing.Size(22, 23);
+            this.lblZans.TabIndex = 12;
+            this.lblZans.Text = "0";
+            // 
+            // lblDVans
+            // 
+            this.lblDVans.AutoSize = true;
+            this.lblDVans.ForeColor = System.Drawing.Color.White;
+            this.lblDVans.Location = new System.Drawing.Point(218, 59);
+            this.lblDVans.Name = "lblDVans";
+            this.lblDVans.Size = new System.Drawing.Size(40, 23);
+            this.lblDVans.TabIndex = 13;
+            this.lblDVans.Text = "n/a";
             // 
             // mainForm
             // 
@@ -254,6 +303,8 @@
             this.Text = "Solver";
             this.gb_algorithms.ResumeLayout(false);
             this.gb_controls.ResumeLayout(false);
+            this.gb_errors.ResumeLayout(false);
+            this.gb_errors.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,6 +327,10 @@
         private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.GroupBox gb_errors;
         private System.Windows.Forms.Button btn_Write;
+        private System.Windows.Forms.Label lblZ;
+        private System.Windows.Forms.Label lblDV;
+        private System.Windows.Forms.Label lblDVans;
+        private System.Windows.Forms.Label lblZans;
     }
 }
 

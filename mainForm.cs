@@ -58,10 +58,8 @@ namespace Project
 
             var (z, decVar) = Knapsack.BranchAndBoundKnapsack(obj, con, RHS);
 
-            tb_display.Text = model.ConvertToCanonicalForm()
-                + "\n" + Knapsack.BranchAndBoundKnapsack(obj, con, RHS)
-                + "\nZ = " + z +
-                "\nDecision Variables: " + string.Join(", ", decVar);
+            lblZans.Text = z.ToString();
+            lblDVans.Text = string.Join(", ", decVar);
         }
 
         private void btn_edit_Click(object sender, EventArgs e)

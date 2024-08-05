@@ -21,6 +21,11 @@ namespace Project
             Console.WriteLine("Model found here:");
             Console.WriteLine(model.ConvertToCanonicalForm());
 
+            //for (int i = 0; i < model.objCoefficients.Count; i++)
+            //{
+            //    model.objCoefficients[i] = model.objCoefficients[i] * -1;
+            //}
+
             List<double> obj = new List<double>();
             List<double> con = new List<double>();
             double RHS = model.cRHS[0];
@@ -31,10 +36,14 @@ namespace Project
             // Extract the first constraint's coefficients and RHS as the knapsack capacity
             con = model.cCoefficients[0];
 
+            //var(z, decVar) = Revised.revisedSimplex(model);
+
             var (z, decVar) = Knapsack.BranchAndBoundKnapsack(obj, con, RHS);
 
             Console.WriteLine("Z = " + z);            
             Console.WriteLine("Decision Variables: " + string.Join(", ", decVar));
+
+            Application.Run(new mainForm());
         }
     }
 }

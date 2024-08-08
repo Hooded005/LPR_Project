@@ -30,7 +30,7 @@ namespace Project
             {
                 if (decVar[i] > 0)
                 {
-                    var += Math.Round(decVar[i], 2) + "x" + i;
+                    var += Math.Round(decVar[i], 2) + "x" + (i+1);
                 }
             }
 

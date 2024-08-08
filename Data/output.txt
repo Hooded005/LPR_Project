@@ -1,9 +1,9 @@
-Z: 15
-Decision Variables: 2, 3, 4, 6
+Z: 24
+Decision Variables: 2, 3, 4, 6, 7
 'Branches:
 Maximize
-Z = 2x1 + 3x2 + 3x3 + 5x4 + 2x5 + 4x6
-C1: 11x1 + 8x2 + 6x3 + 14x4 + 10x5 + 10x6 <= 40
+Z = 2x1 + 3x2 + 3x3 + 5x4 + 2x5 + 4x6 + 9x7
+C1: 11x1 + 8x2 + 6x3 + 14x4 + 10x5 + 6x6 + 0x7 <= 40
 Variable types: bin, bin, bin, bin, bin, bin, bin
 
 Current Branch - Level: -1, Profit: 0, 
@@ -18,17 +18,17 @@ Current Branch - Level: 1, Profit: 2,
 Total Weight: 11, Weight Left Over: 29, 
 Included Items: 1
 
+Current Branch - Level: 2, Profit: 5, 
+Total Weight: 17, Weight Left Over: 23, 
+Included Items: 1, 3
+
+Current Branch - Level: 3, Profit: 10, 
+Total Weight: 31, Weight Left Over: 9, 
+Included Items: 1, 3, 4
+
 Current Branch - Level: 2, Profit: 2, 
 Total Weight: 11, Weight Left Over: 29, 
 Included Items: 1
-
-Current Branch - Level: 3, Profit: 2, 
-Total Weight: 11, Weight Left Over: 29, 
-Included Items: 1
-
-Current Branch - Level: 4, Profit: 4, 
-Total Weight: 21, Weight Left Over: 19, 
-Included Items: 1, 5
 
 Current Branch - Level: 3, Profit: 7, 
 Total Weight: 25, Weight Left Over: 15, 
@@ -37,18 +37,6 @@ Included Items: 1, 4
 Current Branch - Level: 4, Profit: 9, 
 Total Weight: 35, Weight Left Over: 5, 
 Included Items: 1, 4, 5
-
-Current Branch - Level: 4, Profit: 7, 
-Total Weight: 25, Weight Left Over: 15, 
-Included Items: 1, 4
-
-Current Branch - Level: 2, Profit: 5, 
-Total Weight: 17, Weight Left Over: 23, 
-Included Items: 1, 3
-
-Current Branch - Level: 3, Profit: 10, 
-Total Weight: 31, Weight Left Over: 9, 
-Included Items: 1, 3, 4
 
 Current Branch - Level: 1, Profit: 5, 
 Total Weight: 19, Weight Left Over: 21, 
@@ -62,10 +50,6 @@ Current Branch - Level: 3, Profit: 10,
 Total Weight: 33, Weight Left Over: 7, 
 Included Items: 1, 2, 4
 
-Current Branch - Level: 4, Profit: 10, 
-Total Weight: 33, Weight Left Over: 7, 
-Included Items: 1, 2, 4
-
 Current Branch - Level: 2, Profit: 8, 
 Total Weight: 25, Weight Left Over: 15, 
 Included Items: 1, 2, 3
@@ -74,13 +58,17 @@ Current Branch - Level: 3, Profit: 13,
 Total Weight: 39, Weight Left Over: 1, 
 Included Items: 1, 2, 3, 4
 
+Current Branch - Level: 3, Profit: 8, 
+Total Weight: 25, Weight Left Over: 15, 
+Included Items: 1, 2, 3
+
+Current Branch - Level: 4, Profit: 10, 
+Total Weight: 35, Weight Left Over: 5, 
+Included Items: 1, 2, 3, 5
+
 Current Branch - Level: 4, Profit: 13, 
 Total Weight: 39, Weight Left Over: 1, 
 Included Items: 1, 2, 3, 4
-
-Current Branch - Level: 4, Profit: 10, 
-Total Weight: 31, Weight Left Over: 9, 
-Included Items: 1, 3, 4
 
 Current Branch - Level: 0, Profit: 0, 
 Total Weight: 0, Weight Left Over: 40, 
@@ -89,18 +77,6 @@ Included Items:
 Current Branch - Level: 1, Profit: 3, 
 Total Weight: 8, Weight Left Over: 32, 
 Included Items: 2
-
-Current Branch - Level: 2, Profit: 3, 
-Total Weight: 8, Weight Left Over: 32, 
-Included Items: 2
-
-Current Branch - Level: 3, Profit: 8, 
-Total Weight: 22, Weight Left Over: 18, 
-Included Items: 2, 4
-
-Current Branch - Level: 4, Profit: 10, 
-Total Weight: 32, Weight Left Over: 8, 
-Included Items: 2, 4, 5
 
 Current Branch - Level: 2, Profit: 6, 
 Total Weight: 14, Weight Left Over: 26, 
@@ -114,22 +90,118 @@ Current Branch - Level: 4, Profit: 13,
 Total Weight: 38, Weight Left Over: 2, 
 Included Items: 2, 3, 4, 5
 
+Current Branch - Level: 3, Profit: 2, 
+Total Weight: 11, Weight Left Over: 29, 
+Included Items: 1
+
+Current Branch - Level: 4, Profit: 2, 
+Total Weight: 11, Weight Left Over: 29, 
+Included Items: 1
+
+Current Branch - Level: 5, Profit: 6, 
+Total Weight: 17, Weight Left Over: 23, 
+Included Items: 1, 6
+
+Current Branch - Level: 4, Profit: 4, 
+Total Weight: 21, Weight Left Over: 19, 
+Included Items: 1, 5
+
+Current Branch - Level: 5, Profit: 8, 
+Total Weight: 27, Weight Left Over: 13, 
+Included Items: 1, 5, 6
+
+Current Branch - Level: 5, Profit: 9, 
+Total Weight: 35, Weight Left Over: 5, 
+Included Items: 1, 4, 5
+
+Current Branch - Level: 5, Profit: 10, 
+Total Weight: 35, Weight Left Over: 5, 
+Included Items: 1, 2, 3, 5
+
+Current Branch - Level: 3, Profit: 5, 
+Total Weight: 17, Weight Left Over: 23, 
+Included Items: 1, 3
+
+Current Branch - Level: 3, Profit: 5, 
+Total Weight: 19, Weight Left Over: 21, 
+Included Items: 1, 2
+
+Current Branch - Level: 4, Profit: 7, 
+Total Weight: 25, Weight Left Over: 15, 
+Included Items: 1, 4
+
+Current Branch - Level: 4, Profit: 7, 
+Total Weight: 27, Weight Left Over: 13, 
+Included Items: 1, 3, 5
+
+Current Branch - Level: 4, Profit: 7, 
+Total Weight: 29, Weight Left Over: 11, 
+Included Items: 1, 2, 5
+
+Current Branch - Level: 5, Profit: 11, 
+Total Weight: 31, Weight Left Over: 9, 
+Included Items: 1, 4, 6
+
+Current Branch - Level: 5, Profit: 11, 
+Total Weight: 33, Weight Left Over: 7, 
+Included Items: 1, 3, 5, 6
+
+Current Branch - Level: 5, Profit: 11, 
+Total Weight: 35, Weight Left Over: 5, 
+Included Items: 1, 2, 5, 6
+
+Current Branch - Level: 4, Profit: 8, 
+Total Weight: 25, Weight Left Over: 15, 
+Included Items: 1, 2, 3
+
+Current Branch - Level: 3, Profit: 6, 
+Total Weight: 14, Weight Left Over: 26, 
+Included Items: 2, 3
+
+Current Branch - Level: 5, Profit: 12, 
+Total Weight: 31, Weight Left Over: 9, 
+Included Items: 1, 2, 3, 6
+
+Current Branch - Level: 4, Profit: 8, 
+Total Weight: 24, Weight Left Over: 16, 
+Included Items: 2, 3, 5
+
+Current Branch - Level: 5, Profit: 13, 
+Total Weight: 38, Weight Left Over: 2, 
+Included Items: 2, 3, 4, 5
+
+Current Branch - Level: 5, Profit: 13, 
+Total Weight: 39, Weight Left Over: 1, 
+Included Items: 1, 2, 3, 4
+
+Current Branch - Level: 4, Profit: 10, 
+Total Weight: 33, Weight Left Over: 7, 
+Included Items: 1, 2, 4
+
+Current Branch - Level: 4, Profit: 10, 
+Total Weight: 31, Weight Left Over: 9, 
+Included Items: 1, 3, 4
+
+Current Branch - Level: 5, Profit: 14, 
+Total Weight: 39, Weight Left Over: 1, 
+Included Items: 1, 2, 4, 6
+
+Current Branch - Level: 5, Profit: 14, 
+Total Weight: 37, Weight Left Over: 3, 
+Included Items: 1, 3, 4, 6
+
+Current Branch - Level: 2, Profit: 3, 
+Total Weight: 8, Weight Left Over: 32, 
+Included Items: 2
+
 Current Branch - Level: 1, Profit: 0, 
 Total Weight: 0, Weight Left Over: 40, 
 Included Items: 
 
-Current Branch - Level: 2, Profit: 3, 
-Total Weight: 6, Weight Left Over: 34, 
-Included Items: 3
-
-Current Branch - Level: 3, Profit: 8, 
-Total Weight: 20, Weight Left Over: 20, 
-Included Items: 3, 4
-
-Current Branch - Level: 4, Profit: 10, 
-Total Weight: 30, Weight Left Over: 10, 
-Included Items: 3, 4, 5
-
 Current Branch - Level: 4, Profit: 11, 
 Total Weight: 28, Weight Left Over: 12, 
 Included Items: 2, 3, 4
+
+Current Branch - Level: 5, Profit: 15, 
+Total Weight: 34, Weight Left Over: 6, 
+Included Items: 2, 3, 4, 6

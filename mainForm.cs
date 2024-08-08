@@ -37,6 +37,33 @@ namespace Project
                 path = file.FileName;
                 model = readInput.ParseInputFile(path);
             }
+            for (int i = 0; i < model.cCoefficients.Count; i++)
+            {
+                if (model.cCoefficients[i].Count < model.objCoefficients.Count)
+                {
+                    int dif = model.objCoefficients.Count - model.cCoefficients[i].Count;
+                    for (int j = 0; j < dif; j++)
+                    {
+                        model.cCoefficients[i].Add(0);
+                    }
+                }
+
+            }
+
+            for (int i = 0; i < model.cCoefficients.Count; i++)
+            {
+                if (model.cCoefficients[i].Count > model.objCoefficients.Count)
+                {
+                    int dif = model.cCoefficients[i].Count - model.objCoefficients.Count;
+                    int index = model.cCoefficients[i].Count - 1;
+
+                    for (int j = 0; j < dif; j++)
+                    {
+                        model.cCoefficients[i].RemoveAt(index);
+                        index--;
+                    }
+                }
+            }
         }
 
         private void btn_canonical_Click(object sender, EventArgs e)
@@ -47,28 +74,34 @@ namespace Project
 
         private void btn_knapsack_Click(object sender, EventArgs e)
         {
-            tb_display.Text = "";
-            List<double> obj = new List<double>();
-            List<double> con = new List<double>();
-            double RHS = model.cRHS[0];
-
-            // Objective function coefficients
-            obj = new List<double>(model.objCoefficients);
-
-            // Extract the first constraint's coefficients and RHS as the knapsack capacity
-            con = model.cCoefficients[0];
-
             tb_display.Text = model.ConvertToCanonicalForm();
+            output = "";
 
-            var (z, decVar) = Knapsack.BranchAndBoundKnapsack(obj, con, RHS, tb_display);
+            if (model.cCoefficients.Count == 1)
+            {
+                List<double> obj = new List<double>();
+                List<double> con = new List<double>();
+                double RHS = model.cRHS[0];
 
-            lblZans.Text = z.ToString();
-            lblDVans.Text = string.Join(", ", decVar);
+                obj = new List<double>(model.objCoefficients);
 
-            output += $"Z: {lblZans.Text}\n" +
-                $"Decision Variables: {lblDVans.Text}\n'" +
-                $"Branches:\n" +
-                $"{tb_display.Text}";
+                con = model.cCoefficients[0];
+
+                var (z, decVar) = Knapsack.BranchAndBoundKnapsack(obj, con, RHS, tb_display);
+
+                lblZans.Text = z.ToString();
+                lblDVans.Text = string.Join(", ", decVar);
+
+                output += $"Z: {lblZans.Text}\n" +
+                    $"Decision Variables: {lblDVans.Text}\n'" +
+                    $"Branches:\n" +
+                    $"{tb_display.Text}";
+            }
+            else
+            {
+                MessageBox.Show($"Knapsack algorithm can only contain 1 constraint" +
+                    $"\nThe model has: {model.cCoefficients.Count} constraints", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btn_edit_Click(object sender, EventArgs e)
@@ -86,13 +119,12 @@ namespace Project
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            // Check if a file path is available
             if (!string.IsNullOrEmpty(path))
             {
-                // Save the content of the RichTextBox back to the file
                 try
                 {
                     File.WriteAllText(path, tb_display.Text);
+                    model = readInput.ParseInputFile(path);
                     MessageBox.Show("File saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -118,5 +150,25 @@ namespace Project
             }
         }
 
+        private void btn_revised_Click(object sender, EventArgs e)
+        {
+            tb_display.Text = model.ConvertToCanonicalForm();
+            output = "";
+            var (z, decVar, iterations) = PrimalSimplex.simplex(model);
+
+            lblZans.Text = z.ToString();
+            lblDVans.Text = string.Join(", ", decVar);
+
+            tb_display.AppendText("Iterations:" + Environment.NewLine);
+            foreach (var iteration in iterations)
+            {
+                tb_display.AppendText(iteration + Environment.NewLine);
+                tb_display.AppendText(new string('-', 50) + Environment.NewLine);
+            }
+            output += $"Z: {lblZans.Text}\n" +
+                    $"Decision Variables: {lblDVans.Text}\n'" +
+                    $"Branches:\n" +
+                    $"{tb_display.Text}";
+        }
     }
 }

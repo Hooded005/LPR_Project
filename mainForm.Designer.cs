@@ -86,6 +86,7 @@
             this.btn_revised.TabIndex = 2;
             this.btn_revised.Text = "Revised";
             this.btn_revised.UseVisualStyleBackColor = true;
+            this.btn_revised.Click += new System.EventHandler(this.btn_revised_Click);
             // 
             // btn_bnb
             // 

@@ -36,7 +36,7 @@ namespace Project
 
             Console.WriteLine($"Z = {z}" +
                 $"\nDecision Variables: {string.Join(", ", var)}" +
-                $"\n\nTableau:\n{string.Join("\n", iterations)}");
+                $"\n{string.Join("\n", iterations)}");
         }
     }
 }

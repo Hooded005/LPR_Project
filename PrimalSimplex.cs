@@ -8,6 +8,7 @@ namespace Project
 {
     internal class PrimalSimplex
     {
+        static int count = 0;
         public static (double optimalValue, List<double> decisionVariables, List<string> iterations) simplex(LPModel model)
         {
             int numVariables = model.objCoefficients.Count;
@@ -85,7 +86,8 @@ namespace Project
                 PerformPivotOperation(tableau, enteringVariable, leavingVariable);
 
                 // Save current tableau iteration
-                iterations.Add(ConvertTableauToString(tableau));
+                count++;
+                iterations.Add(ConvertTableauToString(tableau, count));
 
                 // Update basic and non-basic variables
                 basicVariables[leavingVariable] = enteringVariable;
@@ -133,10 +135,11 @@ namespace Project
             }
         }
 
-        private static string ConvertTableauToString(List<List<double>> tableau)
+        private static string ConvertTableauToString(List<List<double>> tableau, int count)
         {
             var sb = new System.Text.StringBuilder();
             int numCols = tableau[0].Count;
+            sb.AppendLine("Tableau " + count);
 
             foreach (var row in tableau)
             {

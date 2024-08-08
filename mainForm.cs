@@ -154,7 +154,7 @@ namespace Project
         {
             tb_display.Text = model.ConvertToCanonicalForm();
             output = "";
-            var (z, decVar, iterations) = Revised.revisedSimplex(model);
+            var (z, decVar, iterations) = PrimalSimplex.simplex(model);
 
             lblZans.Text = z.ToString();
             lblDVans.Text = string.Join(", ", decVar);

@@ -57,7 +57,7 @@ namespace Project
                     int dif = model.cCoefficients[i].Count - model.objCoefficients.Count;
                     int index = model.cCoefficients[i].Count - 1;
 
-                    for(int j = 0; j < dif; j++)
+                    for (int j = 0; j < dif; j++)
                     {
                         model.cCoefficients[i].RemoveAt(index);
                         index--;
@@ -74,7 +74,8 @@ namespace Project
 
         private void btn_knapsack_Click(object sender, EventArgs e)
         {
-            tb_display.Text = "";
+            tb_display.Text = model.ConvertToCanonicalForm();
+            output = "";
 
             if (model.cCoefficients.Count == 1)
             {
@@ -85,8 +86,6 @@ namespace Project
                 obj = new List<double>(model.objCoefficients);
 
                 con = model.cCoefficients[0];
-
-                tb_display.Text = model.ConvertToCanonicalForm();
 
                 var (z, decVar) = Knapsack.BranchAndBoundKnapsack(obj, con, RHS, tb_display);
 
@@ -153,7 +152,23 @@ namespace Project
 
         private void btn_revised_Click(object sender, EventArgs e)
         {
+            tb_display.Text = model.ConvertToCanonicalForm();
+            output = "";
+            var (z, decVar, iterations) = Revised.revisedSimplex(model);
 
+            lblZans.Text = z.ToString();
+            lblDVans.Text = string.Join(", ", decVar);
+
+            tb_display.AppendText("Iterations:" + Environment.NewLine);
+            foreach (var iteration in iterations)
+            {
+                tb_display.AppendText(iteration + Environment.NewLine);
+                tb_display.AppendText(new string('-', 50) + Environment.NewLine);
+            }
+            output += $"Z: {lblZans.Text}\n" +
+                    $"Decision Variables: {lblDVans.Text}\n'" +
+                    $"Branches:\n" +
+                    $"{tb_display.Text}";
         }
     }
 }

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Project
@@ -14,36 +11,32 @@ namespace Project
         [STAThread]
         static void Main()
         {
-            LPModel model = readInput.ParseInputFile("Data/test.txt");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Console.WriteLine("Model found here:");
+            //Application.Run(new mainForm());
+
+            LPModel model = readInput.ParseInputFile("Data/test.txt");
             Console.WriteLine(model.ConvertToCanonicalForm());
+            for (int i = 0; i < model.objCoefficients.Count; i++)
+            {
+                model.objCoefficients[i] *= -1;
+                Console.WriteLine(model.objCoefficients[i]);
+            }
+            var (z, decVar, iterations) = PrimalSimplex.simplex(model);
+            string var = "";
 
-            //for (int i = 0; i < model.objCoefficients.Count; i++)
-            //{
-            //    model.objCoefficients[i] = model.objCoefficients[i] * -1;
-            //}
+            for (int i = 0; i < decVar.Count; i++)
+            {
+                if (decVar[i] > 0)
+                {
+                    var += Math.Round(decVar[i], 2) + "x" + i;
+                }
+            }
 
-            List<double> obj = new List<double>();
-            List<double> con = new List<double>();
-            double RHS = model.cRHS[0];
-
-            // Objective function coefficients
-            obj = new List<double>(model.objCoefficients);
-
-            // Extract the first constraint's coefficients and RHS as the knapsack capacity
-            con = model.cCoefficients[0];
-
-            //var(z, decVar) = Revised.revisedSimplex(model);
-
-            //var (z, decVar) = Knapsack.BranchAndBoundKnapsack(obj, con, RHS,);
-
-            //Console.WriteLine("Z = " + z);            
-            //Console.WriteLine("Decision Variables: " + string.Join(", ", decVar));
-
-            Application.Run(new mainForm());
+            Console.WriteLine($"Z = {z}" +
+                $"\nDecision Variables: {string.Join(", ", var)}" +
+                $"\n\nTableau:\n{string.Join("\n", iterations)}");
         }
     }
 }

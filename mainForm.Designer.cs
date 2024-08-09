@@ -48,14 +48,15 @@
             this.lblDV = new System.Windows.Forms.Label();
             this.lblZ = new System.Windows.Forms.Label();
             this.gp_sensitivity = new System.Windows.Forms.GroupBox();
+            this.btn_Duality = new System.Windows.Forms.Button();
+            this.btn_Shadow = new System.Windows.Forms.Button();
+            this.btn_Constraint = new System.Windows.Forms.Button();
             this.btn_NBV = new System.Windows.Forms.Button();
             this.btn_Activity = new System.Windows.Forms.Button();
             this.btn_BV = new System.Windows.Forms.Button();
             this.btn_NBVC = new System.Windows.Forms.Button();
             this.btn_RHS = new System.Windows.Forms.Button();
-            this.btn_Constraint = new System.Windows.Forms.Button();
-            this.btn_Shadow = new System.Windows.Forms.Button();
-            this.btn_Duality = new System.Windows.Forms.Button();
+            this.btn_output = new System.Windows.Forms.Button();
             this.gb_algorithms.SuspendLayout();
             this.gb_controls.SuspendLayout();
             this.gb_errors.SuspendLayout();
@@ -303,6 +304,7 @@
             // 
             // gp_sensitivity
             // 
+            this.gp_sensitivity.Controls.Add(this.btn_output);
             this.gp_sensitivity.Controls.Add(this.btn_Duality);
             this.gp_sensitivity.Controls.Add(this.btn_Shadow);
             this.gp_sensitivity.Controls.Add(this.btn_Constraint);
@@ -313,13 +315,49 @@
             this.gp_sensitivity.Controls.Add(this.btn_RHS);
             this.gp_sensitivity.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gp_sensitivity.ForeColor = System.Drawing.Color.Cyan;
-            this.gp_sensitivity.Location = new System.Drawing.Point(1086, 100);
+            this.gp_sensitivity.Location = new System.Drawing.Point(1091, 77);
             this.gp_sensitivity.Name = "gp_sensitivity";
-            this.gp_sensitivity.Size = new System.Drawing.Size(213, 372);
+            this.gp_sensitivity.Size = new System.Drawing.Size(213, 413);
             this.gp_sensitivity.TabIndex = 7;
             this.gp_sensitivity.TabStop = false;
             this.gp_sensitivity.Text = "Sensitivity";
             this.gp_sensitivity.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // btn_Duality
+            // 
+            this.btn_Duality.FlatAppearance.BorderSize = 10;
+            this.btn_Duality.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Duality.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.btn_Duality.Location = new System.Drawing.Point(8, 327);
+            this.btn_Duality.Name = "btn_Duality";
+            this.btn_Duality.Size = new System.Drawing.Size(199, 36);
+            this.btn_Duality.TabIndex = 8;
+            this.btn_Duality.Text = "Duality";
+            this.btn_Duality.UseVisualStyleBackColor = true;
+            // 
+            // btn_Shadow
+            // 
+            this.btn_Shadow.FlatAppearance.BorderSize = 10;
+            this.btn_Shadow.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Shadow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.btn_Shadow.Location = new System.Drawing.Point(8, 285);
+            this.btn_Shadow.Name = "btn_Shadow";
+            this.btn_Shadow.Size = new System.Drawing.Size(199, 36);
+            this.btn_Shadow.TabIndex = 7;
+            this.btn_Shadow.Text = "Shadow Price";
+            this.btn_Shadow.UseVisualStyleBackColor = true;
+            // 
+            // btn_Constraint
+            // 
+            this.btn_Constraint.FlatAppearance.BorderSize = 10;
+            this.btn_Constraint.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Constraint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.btn_Constraint.Location = new System.Drawing.Point(8, 243);
+            this.btn_Constraint.Name = "btn_Constraint";
+            this.btn_Constraint.Size = new System.Drawing.Size(199, 36);
+            this.btn_Constraint.TabIndex = 6;
+            this.btn_Constraint.Text = "Add Constraint";
+            this.btn_Constraint.UseVisualStyleBackColor = true;
             // 
             // btn_NBV
             // 
@@ -381,41 +419,18 @@
             this.btn_RHS.Text = "RHS";
             this.btn_RHS.UseVisualStyleBackColor = true;
             // 
-            // btn_Constraint
+            // btn_output
             // 
-            this.btn_Constraint.FlatAppearance.BorderSize = 10;
-            this.btn_Constraint.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Constraint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btn_Constraint.Location = new System.Drawing.Point(8, 243);
-            this.btn_Constraint.Name = "btn_Constraint";
-            this.btn_Constraint.Size = new System.Drawing.Size(199, 36);
-            this.btn_Constraint.TabIndex = 6;
-            this.btn_Constraint.Text = "Add Constraint";
-            this.btn_Constraint.UseVisualStyleBackColor = true;
-            // 
-            // btn_Shadow
-            // 
-            this.btn_Shadow.FlatAppearance.BorderSize = 10;
-            this.btn_Shadow.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Shadow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btn_Shadow.Location = new System.Drawing.Point(8, 285);
-            this.btn_Shadow.Name = "btn_Shadow";
-            this.btn_Shadow.Size = new System.Drawing.Size(199, 36);
-            this.btn_Shadow.TabIndex = 7;
-            this.btn_Shadow.Text = "Shadow Price";
-            this.btn_Shadow.UseVisualStyleBackColor = true;
-            // 
-            // btn_Duality
-            // 
-            this.btn_Duality.FlatAppearance.BorderSize = 10;
-            this.btn_Duality.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Duality.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btn_Duality.Location = new System.Drawing.Point(8, 327);
-            this.btn_Duality.Name = "btn_Duality";
-            this.btn_Duality.Size = new System.Drawing.Size(199, 36);
-            this.btn_Duality.TabIndex = 8;
-            this.btn_Duality.Text = "Duality";
-            this.btn_Duality.UseVisualStyleBackColor = true;
+            this.btn_output.FlatAppearance.BorderSize = 10;
+            this.btn_output.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_output.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.btn_output.Location = new System.Drawing.Point(8, 369);
+            this.btn_output.Name = "btn_output";
+            this.btn_output.Size = new System.Drawing.Size(199, 36);
+            this.btn_output.TabIndex = 9;
+            this.btn_output.Text = "Display Output";
+            this.btn_output.UseVisualStyleBackColor = true;
+            this.btn_output.Click += new System.EventHandler(this.btn_output_Click);
             // 
             // mainForm
             // 
@@ -471,6 +486,7 @@
         private System.Windows.Forms.Button btn_Duality;
         private System.Windows.Forms.Button btn_Shadow;
         private System.Windows.Forms.Button btn_Constraint;
+        private System.Windows.Forms.Button btn_output;
     }
 }
 

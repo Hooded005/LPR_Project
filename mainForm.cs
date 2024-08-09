@@ -24,6 +24,35 @@ namespace Project
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // cutting plane button
+
+            lblZans.Text = "";
+            lblDVans.Text = "";
+            tb_display.Text = "";
+
+            try
+            {
+                // Initialize the CuttingPlane class with the current LP model
+                CuttingPlane cuttingPlane = new CuttingPlane(model);
+
+                // Solve the LP problem using the Cutting Plane method
+                double[] solution = cuttingPlane.Solve();
+
+                // Display the results
+                string var = "";
+                for (int i = 0; i < solution.Length; i++)
+                {
+                    var += $"x{i + 1} = {Math.Round(solution[i], 2)}\n";
+                }
+
+                lblZans.Text = "Optimal Solution Found";
+                lblDVans.Text = var;
+                tb_display.Text = "Cutting Plane Method Results:\n" + var;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 

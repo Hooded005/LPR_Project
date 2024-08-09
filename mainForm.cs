@@ -170,5 +170,15 @@ namespace Project
                     $"Branches:\n" +
                     $"{tb_display.Text}";
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Simplex_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

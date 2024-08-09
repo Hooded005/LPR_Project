@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace Project
@@ -60,5 +62,48 @@ namespace Project
 
             return result.ToString();
         }
+
+
+
+        // Method to add a new constraint to the LP model
+        public void AddConstraint(List<double> newCoefficients, string newSign, double newRHS)
+        {
+            if (newCoefficients == null || newCoefficients.Count == 0)
+            {
+                throw new ArgumentException("Invalid constraint: The coefficients cannot be null or empty.");
+            }
+
+            if (newSign != "<=" && newSign != ">=" && newSign != "=")
+            {
+                throw new ArgumentException("Invalid constraint: The sign must be '<=', '>=', or '='.");
+            }
+
+            // Add the new constraint to the model
+            cCoefficients.Add(newCoefficients);
+            cSign.Add(newSign);
+            cRHS.Add(newRHS);
+
+            Console.WriteLine("New constraint added to the model.");
+        }
+
+
+        
+        // Method to solve the LP problem using the Primal Simplex algorithm
+        public (double optimalValue, List<double> decisionVariables, List<string> iterations) Solve()
+        {
+            // Use the PrimalSimplex class to solve the linear programming model
+            var (optimalValue, decisionVariables, iterations) = PrimalSimplex.simplex(this);
+
+            // Return the results from the Simplex algorithm
+            return (optimalValue, decisionVariables, iterations);
+        }
     }
+
 }
+
+
+
+
+
+
+

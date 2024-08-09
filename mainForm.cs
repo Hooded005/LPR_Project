@@ -74,6 +74,9 @@ namespace Project
 
         private void btn_knapsack_Click(object sender, EventArgs e)
         {
+            lblZans.Text = "";
+            lblDVans.Text = "";
+            tb_display.Text = "";
             tb_display.Text = model.ConvertToCanonicalForm();
             output = "";
 
@@ -92,9 +95,7 @@ namespace Project
                 lblZans.Text = z.ToString();
                 lblDVans.Text = string.Join(", ", decVar);
 
-                output += $"Z: {lblZans.Text}\n" +
-                    $"Decision Variables: {lblDVans.Text}\n'" +
-                    $"Branches:\n" +
+                output += $"Branches:\n" +
                     $"{tb_display.Text}";
             }
             else
@@ -152,23 +153,7 @@ namespace Project
 
         private void btn_revised_Click(object sender, EventArgs e)
         {
-            tb_display.Text = model.ConvertToCanonicalForm();
-            output = "";
-            var (z, decVar, iterations) = PrimalSimplex.simplex(model);
 
-            lblZans.Text = z.ToString();
-            lblDVans.Text = string.Join(", ", decVar);
-
-            tb_display.AppendText("Iterations:" + Environment.NewLine);
-            foreach (var iteration in iterations)
-            {
-                tb_display.AppendText(iteration + Environment.NewLine);
-                tb_display.AppendText(new string('-', 50) + Environment.NewLine);
-            }
-            output += $"Z: {lblZans.Text}\n" +
-                    $"Decision Variables: {lblDVans.Text}\n'" +
-                    $"Branches:\n" +
-                    $"{tb_display.Text}";
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -178,7 +163,59 @@ namespace Project
 
         private void btn_Simplex_Click(object sender, EventArgs e)
         {
+            lblZans.Text = "";
+            lblDVans.Text = "";
+            tb_display.Text = "";
+            try
+            {
+                output = "";
 
+                for (int i = 0; i < model.objCoefficients.Count; i++)
+                {
+                    model.objCoefficients[i] *= -1;
+                }
+
+                var (z, decVar, iterations) = PrimalSimplex.simplex(model, 0);
+                string var = "";
+
+                for (int i = 0; i < decVar.Count; i++)
+                {
+                    if (decVar[i] > 0)
+                    {
+                        var += Math.Round(decVar[i], 2) + "x" + (i + 1) + "\n";
+                    }
+                }
+
+                output += $"Z: {Math.Round(z, 2)}\n" +
+                  $"Decision Variables: {var}\n" +
+                  $"Iterations:\n" +
+                  $"{string.Join("\n", iterations)}";
+
+                lblZans.Text = z.ToString();
+                lblDVans.Text = var;
+                tb_display.Text = output;
+
+                for (int i = 0; i < model.objCoefficients.Count; i++)
+                {
+                    model.objCoefficients[i] *= -1;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_output_Click(object sender, EventArgs e)
+        {
+            file.Title = "Select a file to upload";
+            file.Filter = "Text Files|*.txt";
+
+            if (file.ShowDialog() == DialogResult.OK)
+            {
+                path = file.FileName;
+            }
+            tb_display.Text = File.ReadAllText(path);
         }
     }
 }

@@ -8,8 +8,7 @@ namespace Project
 {
     internal class PrimalSimplex
     {
-        static int count = 0;
-        public static (double optimalValue, List<double> decisionVariables, List<string> iterations) simplex(LPModel model)
+        public static (double optimalValue, List<double> decisionVariables, List<string> iterations) simplex(LPModel model, int count)
         {
             int numVariables = model.objCoefficients.Count;
             int numConstraints = model.cCoefficients.Count;
@@ -146,7 +145,7 @@ namespace Project
                 for (int j = 0; j < numCols; j++)
                 {
                     // Round each value to 2 decimal places and pad it for alignment
-                    sb.Append(row[j].ToString("F2").PadLeft(10));
+                    sb.Append(row[j].ToString("F2").PadLeft(5));
                     if (j < numCols - 1) sb.Append("\t");
                 }
                 sb.AppendLine();

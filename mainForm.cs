@@ -173,7 +173,6 @@ namespace Project
                 for (int i = 0; i < model.objCoefficients.Count; i++)
                 {
                     model.objCoefficients[i] *= -1;
-                    Console.WriteLine(model.objCoefficients[i]);
                 }
 
                 var (z, decVar, iterations) = PrimalSimplex.simplex(model, 0);
@@ -199,7 +198,6 @@ namespace Project
                 for (int i = 0; i < model.objCoefficients.Count; i++)
                 {
                     model.objCoefficients[i] *= -1;
-                    Console.WriteLine(model.objCoefficients[i]);
                 }
             }
             catch (Exception ex)

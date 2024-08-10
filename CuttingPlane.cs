@@ -16,17 +16,22 @@ namespace Project
         }
 
         // Method to run the Cutting Plane algorithm
-        public double[] Solve()
+        public (double[] solution, List<string> tableauIterations) Solve()
         {
+            var tableauIterations = new List<string>();
+
             while (true)
             {
                 // Step 1: Solve the relaxed LP problem
-                var (optimalValue, solution, _) = lpModel.Solve();
+                var (optimalValue, solution, iterations) = lpModel.Solve();
+
+                // Store the tableau from each iteration
+                tableauIterations.AddRange(iterations);
 
                 // Step 2: Check if the solution is integral
                 if (IsIntegral(solution.ToArray()))
                 {
-                    return solution.ToArray();  // Optimal integral solution found
+                    return (solution.ToArray(), tableauIterations);  // Optimal integral solution found with tableau iterations
                 }
 
                 // Step 3: Generate a cut (constraint) based on the fractional solution
@@ -80,16 +85,5 @@ namespace Project
 
             return (cutCoefficients, Math.Floor(cutRHS));
         }
-
-
-
-
-
-
-
-
-
     }
-       
 }
-

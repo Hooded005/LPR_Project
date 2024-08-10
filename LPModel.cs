@@ -63,8 +63,6 @@ namespace Project
             return result.ToString();
         }
 
-
-
         // Method to add a new constraint to the LP model
         public void AddConstraint(List<double> newCoefficients, string newSign, double newRHS)
         {
@@ -86,24 +84,23 @@ namespace Project
             Console.WriteLine("New constraint added to the model.");
         }
 
+        public void removeAddedConstraints(LPModel model)
+        {
+            int count = model.cCoefficients.Count;
 
-        
+            model.cCoefficients.RemoveAt(count-1);
+            model.cSign.RemoveAt(count-1);
+            model.cRHS.RemoveAt(count-1);
+        }
+
         // Method to solve the LP problem using the Primal Simplex algorithm
         public (double optimalValue, List<double> decisionVariables, List<string> iterations) Solve()
         {
             // Use the PrimalSimplex class to solve the linear programming model
-            var (optimalValue, decisionVariables, iterations) = PrimalSimplex.simplex(this);
+            var (optimalValue, decisionVariables, iterations) = PrimalSimplex.simplex(this, 0);
 
             // Return the results from the Simplex algorithm
             return (optimalValue, decisionVariables, iterations);
         }
     }
-
 }
-
-
-
-
-
-
-

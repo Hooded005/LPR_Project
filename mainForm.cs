@@ -8,7 +8,7 @@ namespace Project
     public partial class mainForm : Form
     {
         string path = "";
-        LPModel model = new LPModel();
+        LPModel model = readInput.ParseInputFile("Data/test.txt");
         OpenFileDialog file = new OpenFileDialog();
         string output = "";
 
@@ -32,28 +32,42 @@ namespace Project
 
             try
             {
+                convertToOptimal(model);
                 // Initialize the CuttingPlane class with the current LP model
                 CuttingPlane cuttingPlane = new CuttingPlane(model);
 
                 // Solve the LP problem using the Cutting Plane method
-                double[] solution = cuttingPlane.Solve();
+                var (solution, iterations) = cuttingPlane.Solve();
 
                 // Display the results
                 string var = "";
+                double z = 0;
+                convertToOptimal(model);
+
                 for (int i = 0; i < solution.Length; i++)
                 {
-                    var += $"x{i + 1} = {Math.Round(solution[i], 2)}\n";
+                    if (solution[i] > 0)
+                    {
+                        z += model.objCoefficients[i] * solution[i];
+                        var += $"{solution[i]}x{i + 1}\n";
+                    }
                 }
 
-                lblZans.Text = "Optimal Solution Found";
+                output += $"Z: {z}\n" +
+                  $"Decision Variables: {var}\n" +
+                  $"Iterations:\n" +
+                  $"{string.Join("\n", iterations)}";
+
+                lblZans.Text = z.ToString();
                 lblDVans.Text = var;
-                tb_display.Text = "Cutting Plane Method Results:\n" + var;
+                tb_display.Text = output;
+
+                model.removeAddedConstraints(model);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void btn_File_Click(object sender, EventArgs e)
@@ -76,7 +90,6 @@ namespace Project
                         model.cCoefficients[i].Add(0);
                     }
                 }
-
             }
 
             for (int i = 0; i < model.cCoefficients.Count; i++)
@@ -195,14 +208,11 @@ namespace Project
             lblZans.Text = "";
             lblDVans.Text = "";
             tb_display.Text = "";
+
             try
             {
                 output = "";
-
-                for (int i = 0; i < model.objCoefficients.Count; i++)
-                {
-                    model.objCoefficients[i] *= -1;
-                }
+                convertToOptimal(model);
 
                 var (z, decVar, iterations) = PrimalSimplex.simplex(model, 0);
                 string var = "";
@@ -224,10 +234,7 @@ namespace Project
                 lblDVans.Text = var;
                 tb_display.Text = output;
 
-                for (int i = 0; i < model.objCoefficients.Count; i++)
-                {
-                    model.objCoefficients[i] *= -1;
-                }
+                convertToOptimal(model);
             }
             catch (Exception ex)
             {
@@ -245,6 +252,14 @@ namespace Project
                 path = file.FileName;
             }
             tb_display.Text = File.ReadAllText(path);
+        }
+        private static LPModel convertToOptimal(LPModel model)
+        {
+            for (int i = 0; i < model.objCoefficients.Count; i++)
+            {
+                model.objCoefficients[i] *= -1;
+            }
+            return model;
         }
     }
 }

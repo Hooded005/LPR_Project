@@ -36,7 +36,6 @@ namespace Project
 
                 // Step 3: Generate a cut only if necessary
                 bool shouldGenerateCut = false;
-                Console.WriteLine(solution.Count);
                 for (int i = 0; i < solution.Count; i++)
                 {
                     double fractionalPart = solution[i] - Math.Floor(solution[i]);

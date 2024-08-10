@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 
@@ -235,6 +236,10 @@ namespace Project
                 tb_display.Text = output;
 
                 convertToOptimal(model);
+                string finalIter = iterations[iterations.Count - 1];
+                Console.WriteLine(finalIter);
+
+                List<List<double>> tableau = ConvertTableauStringToList(finalIter);
             }
             catch (Exception ex)
             {
@@ -260,6 +265,40 @@ namespace Project
                 model.objCoefficients[i] *= -1;
             }
             return model;
+        }
+        private static List<List<double>> ConvertTableauStringToList(string tableauText)
+        {
+            var lines = tableauText.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            var result = new List<List<double>>();
+
+            // Skip the first line (title or header)
+            for (int i = 1; i < lines.Length; i++)
+            {
+                var line = lines[i].Trim();
+                if (string.IsNullOrWhiteSpace(line))
+                    continue;
+
+                // Replace commas with dots
+                line = line.Replace(',', '.');
+
+                var elements = line.Split(new[] { '\t' }, StringSplitOptions.RemoveEmptyEntries);
+                var row = new List<double>();
+
+                foreach (var element in elements)
+                {
+                    if (double.TryParse(element, NumberStyles.Float, CultureInfo.InvariantCulture, out double value))
+                    {
+                        row.Add(value);
+                    }
+                    else
+                    {
+                        throw new FormatException($"Invalid number format: {element}");
+                    }
+                }
+                result.Add(row);
+            }
+
+            return result;
         }
     }
 }

@@ -80,8 +80,6 @@ namespace Project
             cCoefficients.Add(newCoefficients);
             cSign.Add(newSign);
             cRHS.Add(newRHS);
-
-            Console.WriteLine("New constraint added to the model.");
         }
 
         public void removeAddedConstraints(LPModel model)

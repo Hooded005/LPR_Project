@@ -34,10 +34,31 @@ namespace Project
                     return (solution.ToArray(), tableauIterations);  // Optimal integral solution found with tableau iterations
                 }
 
-                // Step 3: Generate a cut (constraint) based on the fractional solution
-                (List<double> cutCoefficients, double cutRHS) = GenerateCut(solution.ToArray());
+                // Step 3: Generate a cut only if necessary
+                bool shouldGenerateCut = false;
+                Console.WriteLine(solution.Count);
+                for (int i = 0; i < solution.Count; i++)
+                {
+                    double fractionalPart = solution[i] - Math.Floor(solution[i]);
 
-                // Step 4: Add the cut to the model
+                    // If the variable is fractional, we should generate a cut
+                    if (fractionalPart > 1e-6)  // Tolerance to avoid precision issues
+                    {
+                        shouldGenerateCut = true;
+                        break;
+                    }
+                }
+
+                if (!shouldGenerateCut)
+                {
+                    // If no cuts are needed, accept the current solution
+                    return (solution.ToArray(), tableauIterations);
+                }
+
+                // Step 4: Generate and apply a cut (if necessary)
+                (List<double> cutCoefficients, double cutRHS) = GenerateSimpleCut(solution.ToArray());
+
+                // Step 5: Add the cut to the model
                 lpModel.AddConstraint(cutCoefficients, "<=", cutRHS);
 
                 // Loop back to solve the LP with the new constraint
@@ -58,31 +79,23 @@ namespace Project
             return true;  // All values are integral
         }
 
-        // Method to generate a cut based on the fractional solution
-        private (List<double> coefficients, double rhs) GenerateCut(double[] solution)
+        // Method to generate a simple cut based on the fractional solution
+        private (List<double> coefficients, double rhs) GenerateSimpleCut(double[] solution)
         {
-            // Example implementation of a simple cut generation
-            // In reality, this could be a more sophisticated cut, such as a Gomory cut
-
-            List<double> cutCoefficients = new List<double>();
+            // This is a basic placeholder for a simple cut generation
+            List<double> cutCoefficients = new List<double>(solution.Length);
             double cutRHS = 0;
 
             for (int i = 0; i < solution.Length; i++)
             {
                 double fractionalPart = solution[i] - Math.Floor(solution[i]);
 
-                if (fractionalPart > 0)
-                {
-                    // A simple Gomory cut where coefficients are the fractional parts
-                    cutCoefficients.Add(fractionalPart);
-                    cutRHS += fractionalPart;
-                }
-                else
-                {
-                    cutCoefficients.Add(0);  // No fractional part contributes nothing to the cut
-                }
+                // Create a basic cut based on the fractional part
+                cutCoefficients.Add(fractionalPart);
+                cutRHS += fractionalPart;
             }
 
+            // Adjust the RHS to push the solution closer to integrality
             return (cutCoefficients, Math.Floor(cutRHS));
         }
     }

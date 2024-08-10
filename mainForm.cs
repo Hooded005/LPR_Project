@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 
@@ -8,7 +9,7 @@ namespace Project
     public partial class mainForm : Form
     {
         string path = "";
-        LPModel model = new LPModel();
+        LPModel model = readInput.ParseInputFile("Data/test.txt");
         OpenFileDialog file = new OpenFileDialog();
         string output = "";
 
@@ -24,7 +25,50 @@ namespace Project
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // cutting plane button
 
+            lblZans.Text = "";
+            lblDVans.Text = "";
+            tb_display.Text = "";
+
+            try
+            {
+                convertToOptimal(model);
+                // Initialize the CuttingPlane class with the current LP model
+                CuttingPlane cuttingPlane = new CuttingPlane(model);
+
+                // Solve the LP problem using the Cutting Plane method
+                var (solution, iterations) = cuttingPlane.Solve();
+
+                // Display the results
+                string var = "";
+                double z = 0;
+                convertToOptimal(model);
+
+                for (int i = 0; i < solution.Length; i++)
+                {
+                    if (solution[i] > 0)
+                    {
+                        z += model.objCoefficients[i] * solution[i];
+                        var += $"{solution[i]}x{i + 1}\n";
+                    }
+                }
+
+                output += $"Z: {z}\n" +
+                  $"Decision Variables: {var}\n" +
+                  $"Iterations:\n" +
+                  $"{string.Join("\n", iterations)}";
+
+                lblZans.Text = z.ToString();
+                lblDVans.Text = var;
+                tb_display.Text = output;
+
+                model.removeAddedConstraints(model);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btn_File_Click(object sender, EventArgs e)
@@ -47,7 +91,6 @@ namespace Project
                         model.cCoefficients[i].Add(0);
                     }
                 }
-
             }
 
             for (int i = 0; i < model.cCoefficients.Count; i++)
@@ -74,6 +117,9 @@ namespace Project
 
         private void btn_knapsack_Click(object sender, EventArgs e)
         {
+            lblZans.Text = "";
+            lblDVans.Text = "";
+            tb_display.Text = "";
             tb_display.Text = model.ConvertToCanonicalForm();
             output = "";
 
@@ -92,9 +138,7 @@ namespace Project
                 lblZans.Text = z.ToString();
                 lblDVans.Text = string.Join(", ", decVar);
 
-                output += $"Z: {lblZans.Text}\n" +
-                    $"Decision Variables: {lblDVans.Text}\n'" +
-                    $"Branches:\n" +
+                output += $"Branches:\n" +
                     $"{tb_display.Text}";
             }
             else
@@ -152,23 +196,7 @@ namespace Project
 
         private void btn_revised_Click(object sender, EventArgs e)
         {
-            tb_display.Text = model.ConvertToCanonicalForm();
-            output = "";
-            var (z, decVar, iterations) = PrimalSimplex.simplex(model);
 
-            lblZans.Text = z.ToString();
-            lblDVans.Text = string.Join(", ", decVar);
-
-            tb_display.AppendText("Iterations:" + Environment.NewLine);
-            foreach (var iteration in iterations)
-            {
-                tb_display.AppendText(iteration + Environment.NewLine);
-                tb_display.AppendText(new string('-', 50) + Environment.NewLine);
-            }
-            output += $"Z: {lblZans.Text}\n" +
-                    $"Decision Variables: {lblDVans.Text}\n'" +
-                    $"Branches:\n" +
-                    $"{tb_display.Text}";
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -178,7 +206,99 @@ namespace Project
 
         private void btn_Simplex_Click(object sender, EventArgs e)
         {
+            lblZans.Text = "";
+            lblDVans.Text = "";
+            tb_display.Text = "";
 
+            try
+            {
+                output = "";
+                convertToOptimal(model);
+
+                var (z, decVar, iterations) = PrimalSimplex.simplex(model, 0);
+                string var = "";
+
+                for (int i = 0; i < decVar.Count; i++)
+                {
+                    if (decVar[i] > 0)
+                    {
+                        var += Math.Round(decVar[i], 2) + "x" + (i + 1) + "\n";
+                    }
+                }
+
+                output += $"Z: {Math.Round(z, 2)}\n" +
+                  $"Decision Variables: {var}\n" +
+                  $"Iterations:\n" +
+                  $"{string.Join("\n", iterations)}";
+
+                lblZans.Text = z.ToString();
+                lblDVans.Text = var;
+                tb_display.Text = output;
+
+                convertToOptimal(model);
+                string finalIter = iterations[iterations.Count - 1];
+                Console.WriteLine(finalIter);
+
+                List<List<double>> tableau = ConvertTableauStringToList(finalIter);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_output_Click(object sender, EventArgs e)
+        {
+            file.Title = "Select a file to upload";
+            file.Filter = "Text Files|*.txt";
+
+            if (file.ShowDialog() == DialogResult.OK)
+            {
+                path = file.FileName;
+            }
+            tb_display.Text = File.ReadAllText(path);
+        }
+        private static LPModel convertToOptimal(LPModel model)
+        {
+            for (int i = 0; i < model.objCoefficients.Count; i++)
+            {
+                model.objCoefficients[i] *= -1;
+            }
+            return model;
+        }
+        private static List<List<double>> ConvertTableauStringToList(string tableauText)
+        {
+            var lines = tableauText.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            var result = new List<List<double>>();
+
+            // Skip the first line (title or header)
+            for (int i = 1; i < lines.Length; i++)
+            {
+                var line = lines[i].Trim();
+                if (string.IsNullOrWhiteSpace(line))
+                    continue;
+
+                // Replace commas with dots
+                line = line.Replace(',', '.');
+
+                var elements = line.Split(new[] { '\t' }, StringSplitOptions.RemoveEmptyEntries);
+                var row = new List<double>();
+
+                foreach (var element in elements)
+                {
+                    if (double.TryParse(element, NumberStyles.Float, CultureInfo.InvariantCulture, out double value))
+                    {
+                        row.Add(value);
+                    }
+                    else
+                    {
+                        throw new FormatException($"Invalid number format: {element}");
+                    }
+                }
+                result.Add(row);
+            }
+
+            return result;
         }
     }
 }

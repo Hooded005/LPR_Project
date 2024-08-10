@@ -11,7 +11,7 @@ namespace Project
     {
         public static LPModel ParseInputFile(string filePath)
         {
-            string testPath = "C:\\Users\\seanb\\OneDrive\\Documents\\School\\BC - 3RD\\LPR381\\Project\\Project\\Data\\test.txt";
+            string testPath = "C:\\Users\\carst\\OneDrive\\Documents\\Belgium 2024\\LPRProject\\LPR_Project\\Data\\test.txt";
 
             LPModel model = new LPModel();
             string[] lines = File.ReadAllLines(testPath);

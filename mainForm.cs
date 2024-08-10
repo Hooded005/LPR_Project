@@ -300,5 +300,10 @@ namespace Project
 
             return result;
         }
+
+        private void btn_NBV_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

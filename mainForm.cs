@@ -10,6 +10,7 @@ namespace Project
     {
         string path = "";
         LPModel model = readInput.ParseInputFile("Data/test.txt");
+        LPModel sModel = new LPModel();
         OpenFileDialog file = new OpenFileDialog();
         string output = "";
         List<List<double>> tableau;
@@ -84,32 +85,7 @@ namespace Project
                 path = file.FileName;
                 model = readInput.ParseInputFile(path);
             }
-            for (int i = 0; i < model.cCoefficients.Count; i++)
-            {
-                if (model.cCoefficients[i].Count < model.objCoefficients.Count)
-                {
-                    int dif = model.objCoefficients.Count - model.cCoefficients[i].Count;
-                    for (int j = 0; j < dif; j++)
-                    {
-                        model.cCoefficients[i].Add(0);
-                    }
-                }
-            }
-
-            for (int i = 0; i < model.cCoefficients.Count; i++)
-            {
-                if (model.cCoefficients[i].Count > model.objCoefficients.Count)
-                {
-                    int dif = model.cCoefficients[i].Count - model.objCoefficients.Count;
-                    int index = model.cCoefficients[i].Count - 1;
-
-                    for (int j = 0; j < dif; j++)
-                    {
-                        model.cCoefficients[i].RemoveAt(index);
-                        index--;
-                    }
-                }
-            }
+            fillMissing(model);
         }
 
         private void btn_canonical_Click(object sender, EventArgs e)
@@ -170,6 +146,7 @@ namespace Project
                 {
                     File.WriteAllText(path, tb_display.Text);
                     model = readInput.ParseInputFile(path);
+                    fillMissing(model);
                     MessageBox.Show("File saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -303,6 +280,11 @@ namespace Project
 
         private void btn_Activity_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void btn_change_Click(object sender, EventArgs e)
+        {
             try
             {
                 tb_display.Text = File.ReadAllText(path);
@@ -311,44 +293,93 @@ namespace Project
             {
                 MessageBox.Show($"Error reading file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            //try
+            //{
+            //    string solution = "";
+            //    string heading = "";
+            //    string toFile = "";
+
+            //    for (int i = 0; i < tableau.Count; i++)
+            //    {
+            //        for (int j = 0; j < tableau[i].Count; j++)
+            //        {
+            //            solution += tableau[i][j] + "\t";
+            //            if (i == 0)
+            //            {
+            //                if (j == tableau[i].Count - 1)
+            //                {
+
+            //                    heading += "RHS";
+            //                }
+            //                else
+            //                {
+            //                    heading += $"x{j + 1}\t";
+            //                }
+            //            }
+            //        }
+            //        solution += "\n";
+            //    }
+
+            //    toFile += heading + "\n" + solution;
+            //    toFile += heading + "\n" + solution;
+            //    File.WriteAllText(tempPath, toFile);
+            //    tb_display.Text = File.ReadAllText(tempPath);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Error reading file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
-        private void btn_change_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
-            try
+            if (!string.IsNullOrEmpty(tempPath))
             {
-                string solution = "";
-                string heading = "";
-                string toFile = "";
-
-                for (int i = 0; i < tableau.Count; i++)
+                try
                 {
-                    for (int j = 0; j < tableau[i].Count; j++)
-                    {
-                        solution += tableau[i][j] + "\t";
-                        if (i == 0)
-                        {
-                            if (j == tableau[i].Count - 1)
-                            {
-
-                                heading += "RHS";
-                            }
-                            else
-                            {
-                                heading += $"x{j + 1}\t";
-                            }
-                        }
-                    }
-                    solution += "\n";
+                    File.WriteAllText(tempPath, tb_display.Text);
+                    sModel = readInput.ParseInputFile(tempPath);
+                    fillMissing(sModel);
+                    MessageBox.Show("File saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-                toFile += heading + "\n" + solution;
-                File.WriteAllText(tempPath, toFile);
-                tb_display.Text = File.ReadAllText(tempPath);
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error saving file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Error reading file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No file selected to save.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void fillMissing(LPModel model)
+        {
+            for (int i = 0; i < model.cCoefficients.Count; i++)
+            {
+                if (model.cCoefficients[i].Count < model.objCoefficients.Count)
+                {
+                    int dif = model.objCoefficients.Count - model.cCoefficients[i].Count;
+                    for (int j = 0; j < dif; j++)
+                    {
+                        model.cCoefficients[i].Add(0);
+                    }
+                }
+            }
+            for (int i = 0; i < model.cCoefficients.Count; i++)
+            {
+                if (model.cCoefficients[i].Count > model.objCoefficients.Count)
+                {
+                    int dif = model.cCoefficients[i].Count - model.objCoefficients.Count;
+                    int index = model.cCoefficients[i].Count - 1;
+
+                    for (int j = 0; j < dif; j++)
+                    {
+                        model.cCoefficients[i].RemoveAt(index);
+                        index--;
+                    }
+                }
             }
         }
     }

@@ -53,17 +53,18 @@
             this.btn_Shadow = new System.Windows.Forms.Button();
             this.btn_range = new System.Windows.Forms.Button();
             this.btn_change = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.gp_Sens_Input = new System.Windows.Forms.GroupBox();
+            this.btn_save_sen = new System.Windows.Forms.Button();
+            this.gp_range = new System.Windows.Forms.GroupBox();
             this.tb_i_index = new System.Windows.Forms.TextBox();
             this.lbl_i_index = new System.Windows.Forms.Label();
             this.lbl_j_index = new System.Windows.Forms.Label();
             this.tb_j_index = new System.Windows.Forms.TextBox();
+            this.tb_note = new System.Windows.Forms.RichTextBox();
             this.gb_algorithms.SuspendLayout();
             this.gb_controls.SuspendLayout();
             this.gb_errors.SuspendLayout();
             this.gp_sensitivity.SuspendLayout();
-            this.gp_Sens_Input.SuspendLayout();
+            this.gp_range.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl01
@@ -257,10 +258,10 @@
             this.tb_display.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.tb_display.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_display.ForeColor = System.Drawing.Color.White;
-            this.tb_display.Location = new System.Drawing.Point(281, 44);
+            this.tb_display.Location = new System.Drawing.Point(281, 47);
             this.tb_display.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_display.Name = "tb_display";
-            this.tb_display.Size = new System.Drawing.Size(773, 498);
+            this.tb_display.Size = new System.Drawing.Size(773, 495);
             this.tb_display.TabIndex = 8;
             this.tb_display.Text = "";
             // 
@@ -324,7 +325,7 @@
             // 
             // gp_sensitivity
             // 
-            this.gp_sensitivity.Controls.Add(this.button1);
+            this.gp_sensitivity.Controls.Add(this.btn_save_sen);
             this.gp_sensitivity.Controls.Add(this.btn_output);
             this.gp_sensitivity.Controls.Add(this.btn_Duality);
             this.gp_sensitivity.Controls.Add(this.btn_Shadow);
@@ -347,7 +348,7 @@
             this.btn_output.FlatAppearance.BorderSize = 10;
             this.btn_output.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_output.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btn_output.Location = new System.Drawing.Point(5, 238);
+            this.btn_output.Location = new System.Drawing.Point(9, 234);
             this.btn_output.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_output.Name = "btn_output";
             this.btn_output.Size = new System.Drawing.Size(199, 36);
@@ -361,7 +362,7 @@
             this.btn_Duality.FlatAppearance.BorderSize = 10;
             this.btn_Duality.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Duality.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btn_Duality.Location = new System.Drawing.Point(5, 198);
+            this.btn_Duality.Location = new System.Drawing.Point(9, 192);
             this.btn_Duality.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_Duality.Name = "btn_Duality";
             this.btn_Duality.Size = new System.Drawing.Size(199, 36);
@@ -374,7 +375,7 @@
             this.btn_Shadow.FlatAppearance.BorderSize = 10;
             this.btn_Shadow.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Shadow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btn_Shadow.Location = new System.Drawing.Point(5, 156);
+            this.btn_Shadow.Location = new System.Drawing.Point(9, 152);
             this.btn_Shadow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_Shadow.Name = "btn_Shadow";
             this.btn_Shadow.Size = new System.Drawing.Size(199, 36);
@@ -387,7 +388,7 @@
             this.btn_range.FlatAppearance.BorderSize = 10;
             this.btn_range.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_range.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btn_range.Location = new System.Drawing.Point(5, 33);
+            this.btn_range.Location = new System.Drawing.Point(9, 31);
             this.btn_range.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_range.Name = "btn_range";
             this.btn_range.Size = new System.Drawing.Size(199, 36);
@@ -400,7 +401,7 @@
             this.btn_change.FlatAppearance.BorderSize = 10;
             this.btn_change.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_change.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btn_change.Location = new System.Drawing.Point(5, 75);
+            this.btn_change.Location = new System.Drawing.Point(9, 72);
             this.btn_change.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_change.Name = "btn_change";
             this.btn_change.Size = new System.Drawing.Size(199, 36);
@@ -409,33 +410,35 @@
             this.btn_change.UseVisualStyleBackColor = true;
             this.btn_change.Click += new System.EventHandler(this.btn_change_Click);
             // 
-            // button1
+            // btn_save_sen
             // 
-            this.button1.FlatAppearance.BorderSize = 10;
-            this.button1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.button1.Location = new System.Drawing.Point(5, 116);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(199, 36);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_save_sen.FlatAppearance.BorderSize = 10;
+            this.btn_save_sen.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_save_sen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.btn_save_sen.Location = new System.Drawing.Point(9, 112);
+            this.btn_save_sen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_save_sen.Name = "btn_save_sen";
+            this.btn_save_sen.Size = new System.Drawing.Size(199, 36);
+            this.btn_save_sen.TabIndex = 8;
+            this.btn_save_sen.Text = "Save";
+            this.btn_save_sen.UseVisualStyleBackColor = true;
+            this.btn_save_sen.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // gp_Sens_Input
+            // gp_range
             // 
-            this.gp_Sens_Input.Controls.Add(this.tb_j_index);
-            this.gp_Sens_Input.Controls.Add(this.lbl_j_index);
-            this.gp_Sens_Input.Controls.Add(this.lbl_i_index);
-            this.gp_Sens_Input.Controls.Add(this.tb_i_index);
-            this.gp_Sens_Input.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gp_Sens_Input.ForeColor = System.Drawing.Color.Cyan;
-            this.gp_Sens_Input.Location = new System.Drawing.Point(1092, 330);
-            this.gp_Sens_Input.Name = "gp_Sens_Input";
-            this.gp_Sens_Input.Size = new System.Drawing.Size(230, 211);
-            this.gp_Sens_Input.TabIndex = 10;
-            this.gp_Sens_Input.TabStop = false;
-            this.gp_Sens_Input.Text = "Sensitivity";
+            this.gp_range.Controls.Add(this.tb_note);
+            this.gp_range.Controls.Add(this.tb_j_index);
+            this.gp_range.Controls.Add(this.lbl_j_index);
+            this.gp_range.Controls.Add(this.lbl_i_index);
+            this.gp_range.Controls.Add(this.tb_i_index);
+            this.gp_range.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gp_range.ForeColor = System.Drawing.Color.Cyan;
+            this.gp_range.Location = new System.Drawing.Point(1092, 330);
+            this.gp_range.Name = "gp_range";
+            this.gp_range.Size = new System.Drawing.Size(230, 211);
+            this.gp_range.TabIndex = 10;
+            this.gp_range.TabStop = false;
+            this.gp_range.Text = "Range";
             // 
             // tb_i_index
             // 
@@ -473,13 +476,25 @@
             this.tb_j_index.Size = new System.Drawing.Size(199, 34);
             this.tb_j_index.TabIndex = 14;
             // 
+            // tb_note
+            // 
+            this.tb_note.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.tb_note.Font = new System.Drawing.Font("Arial Rounded MT Bold", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_note.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.tb_note.Location = new System.Drawing.Point(6, 158);
+            this.tb_note.Name = "tb_note";
+            this.tb_note.ReadOnly = true;
+            this.tb_note.Size = new System.Drawing.Size(199, 47);
+            this.tb_note.TabIndex = 14;
+            this.tb_note.Text = "Enter the row and column index of a variable before running a command";
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.ClientSize = new System.Drawing.Size(1352, 674);
-            this.Controls.Add(this.gp_Sens_Input);
+            this.Controls.Add(this.gp_range);
             this.Controls.Add(this.gp_sensitivity);
             this.Controls.Add(this.gb_errors);
             this.Controls.Add(this.tb_display);
@@ -494,8 +509,8 @@
             this.gb_errors.ResumeLayout(false);
             this.gb_errors.PerformLayout();
             this.gp_sensitivity.ResumeLayout(false);
-            this.gp_Sens_Input.ResumeLayout(false);
-            this.gp_Sens_Input.PerformLayout();
+            this.gp_range.ResumeLayout(false);
+            this.gp_range.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -528,12 +543,13 @@
         private System.Windows.Forms.Button btn_Duality;
         private System.Windows.Forms.Button btn_Shadow;
         private System.Windows.Forms.Button btn_output;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox gp_Sens_Input;
+        private System.Windows.Forms.Button btn_save_sen;
+        private System.Windows.Forms.GroupBox gp_range;
         private System.Windows.Forms.TextBox tb_j_index;
         private System.Windows.Forms.Label lbl_j_index;
         private System.Windows.Forms.Label lbl_i_index;
         private System.Windows.Forms.TextBox tb_i_index;
+        private System.Windows.Forms.RichTextBox tb_note;
     }
 }
 

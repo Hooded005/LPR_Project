@@ -12,6 +12,8 @@ namespace Project
         LPModel model = readInput.ParseInputFile("Data/test.txt");
         OpenFileDialog file = new OpenFileDialog();
         string output = "";
+        List<List<double>> tableau;
+        string tempPath = "temp.txt";
 
         public mainForm()
         {
@@ -30,6 +32,7 @@ namespace Project
             lblZans.Text = "";
             lblDVans.Text = "";
             tb_display.Text = "";
+            output = model.ConvertToCanonicalForm();
 
             try
             {
@@ -54,7 +57,7 @@ namespace Project
                     }
                 }
 
-                output += $"Z: {z}\n" +
+                output += $"\nZ: {z}\n" +
                   $"Decision Variables: {var}\n" +
                   $"Iterations:\n" +
                   $"{string.Join("\n", iterations)}";
@@ -111,7 +114,6 @@ namespace Project
 
         private void btn_canonical_Click(object sender, EventArgs e)
         {
-            tb_display.Text = "";
             tb_display.Text = model.ConvertToCanonicalForm();
         }
 
@@ -119,9 +121,8 @@ namespace Project
         {
             lblZans.Text = "";
             lblDVans.Text = "";
-            tb_display.Text = "";
             tb_display.Text = model.ConvertToCanonicalForm();
-            output = "";
+            output = model.ConvertToCanonicalForm();
 
             if (model.cCoefficients.Count == 1)
             {
@@ -138,7 +139,7 @@ namespace Project
                 lblZans.Text = z.ToString();
                 lblDVans.Text = string.Join(", ", decVar);
 
-                output += $"Branches:\n" +
+                output += $"\nBranches:\n" +
                     $"{tb_display.Text}";
             }
             else
@@ -209,10 +210,10 @@ namespace Project
             lblZans.Text = "";
             lblDVans.Text = "";
             tb_display.Text = "";
+            output = model.ConvertToCanonicalForm();
 
             try
             {
-                output = "";
                 convertToOptimal(model);
 
                 var (z, decVar, iterations) = PrimalSimplex.simplex(model, 0);
@@ -226,7 +227,7 @@ namespace Project
                     }
                 }
 
-                output += $"Z: {Math.Round(z, 2)}\n" +
+                output += $"\nZ: {Math.Round(z, 2)}\n" +
                   $"Decision Variables: {var}\n" +
                   $"Iterations:\n" +
                   $"{string.Join("\n", iterations)}";
@@ -237,9 +238,8 @@ namespace Project
 
                 convertToOptimal(model);
                 string finalIter = iterations[iterations.Count - 1];
-                Console.WriteLine(finalIter);
 
-                List<List<double>> tableau = ConvertTableauStringToList(finalIter);
+                tableau = ConvertTableauStringToList(finalIter);
             }
             catch (Exception ex)
             {
@@ -299,6 +299,57 @@ namespace Project
             }
 
             return result;
+        }
+
+        private void btn_Activity_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                tb_display.Text = File.ReadAllText(path);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error reading file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_change_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string solution = "";
+                string heading = "";
+                string toFile = "";
+
+                for (int i = 0; i < tableau.Count; i++)
+                {
+                    for (int j = 0; j < tableau[i].Count; j++)
+                    {
+                        solution += tableau[i][j] + "\t";
+                        if (i == 0)
+                        {
+                            if (j == tableau[i].Count - 1)
+                            {
+
+                                heading += "RHS";
+                            }
+                            else
+                            {
+                                heading += $"x{j + 1}\t";
+                            }
+                        }
+                    }
+                    solution += "\n";
+                }
+
+                toFile += heading + "\n" + solution;
+                File.WriteAllText(tempPath, toFile);
+                tb_display.Text = File.ReadAllText(tempPath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error reading file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

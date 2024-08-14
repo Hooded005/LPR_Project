@@ -15,6 +15,11 @@ namespace Project
             cRHS = new List<double>();
             varTypes = new List<string>();
         }
+        public LPModel(List<double> obj, List<List<double>> con)
+        {
+            objCoefficients = obj;
+            cCoefficients = con;
+        }
 
         public bool IsMax { get; set; }
         public List<double> objCoefficients { get; set; }

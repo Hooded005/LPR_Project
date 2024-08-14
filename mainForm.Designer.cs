@@ -48,18 +48,18 @@
             this.lblDV = new System.Windows.Forms.Label();
             this.lblZ = new System.Windows.Forms.Label();
             this.gp_sensitivity = new System.Windows.Forms.GroupBox();
+            this.btn_save_sen = new System.Windows.Forms.Button();
             this.btn_output = new System.Windows.Forms.Button();
             this.btn_Duality = new System.Windows.Forms.Button();
             this.btn_Shadow = new System.Windows.Forms.Button();
             this.btn_range = new System.Windows.Forms.Button();
             this.btn_change = new System.Windows.Forms.Button();
-            this.btn_save_sen = new System.Windows.Forms.Button();
             this.gp_range = new System.Windows.Forms.GroupBox();
-            this.tb_i_index = new System.Windows.Forms.TextBox();
-            this.lbl_i_index = new System.Windows.Forms.Label();
-            this.lbl_j_index = new System.Windows.Forms.Label();
-            this.tb_j_index = new System.Windows.Forms.TextBox();
             this.tb_note = new System.Windows.Forms.RichTextBox();
+            this.tb_j_index = new System.Windows.Forms.TextBox();
+            this.lbl_j_index = new System.Windows.Forms.Label();
+            this.lbl_i_index = new System.Windows.Forms.Label();
+            this.tb_i_index = new System.Windows.Forms.TextBox();
             this.gb_algorithms.SuspendLayout();
             this.gb_controls.SuspendLayout();
             this.gb_errors.SuspendLayout();
@@ -343,6 +343,20 @@
             this.gp_sensitivity.Text = "Sensitivity";
             this.gp_sensitivity.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // btn_save_sen
+            // 
+            this.btn_save_sen.FlatAppearance.BorderSize = 10;
+            this.btn_save_sen.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_save_sen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.btn_save_sen.Location = new System.Drawing.Point(9, 112);
+            this.btn_save_sen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_save_sen.Name = "btn_save_sen";
+            this.btn_save_sen.Size = new System.Drawing.Size(199, 36);
+            this.btn_save_sen.TabIndex = 8;
+            this.btn_save_sen.Text = "Save";
+            this.btn_save_sen.UseVisualStyleBackColor = true;
+            this.btn_save_sen.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // btn_output
             // 
             this.btn_output.FlatAppearance.BorderSize = 10;
@@ -395,6 +409,7 @@
             this.btn_range.TabIndex = 1;
             this.btn_range.Text = "Range";
             this.btn_range.UseVisualStyleBackColor = true;
+            this.btn_range.Click += new System.EventHandler(this.btn_range_Click);
             // 
             // btn_change
             // 
@@ -409,20 +424,6 @@
             this.btn_change.Text = "Edit";
             this.btn_change.UseVisualStyleBackColor = true;
             this.btn_change.Click += new System.EventHandler(this.btn_change_Click);
-            // 
-            // btn_save_sen
-            // 
-            this.btn_save_sen.FlatAppearance.BorderSize = 10;
-            this.btn_save_sen.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_save_sen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btn_save_sen.Location = new System.Drawing.Point(9, 112);
-            this.btn_save_sen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_save_sen.Name = "btn_save_sen";
-            this.btn_save_sen.Size = new System.Drawing.Size(199, 36);
-            this.btn_save_sen.TabIndex = 8;
-            this.btn_save_sen.Text = "Save";
-            this.btn_save_sen.UseVisualStyleBackColor = true;
-            this.btn_save_sen.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // gp_range
             // 
@@ -440,42 +441,6 @@
             this.gp_range.TabStop = false;
             this.gp_range.Text = "Range";
             // 
-            // tb_i_index
-            // 
-            this.tb_i_index.Location = new System.Drawing.Point(5, 54);
-            this.tb_i_index.Name = "tb_i_index";
-            this.tb_i_index.Size = new System.Drawing.Size(199, 34);
-            this.tb_i_index.TabIndex = 11;
-            // 
-            // lbl_i_index
-            // 
-            this.lbl_i_index.AutoSize = true;
-            this.lbl_i_index.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_i_index.ForeColor = System.Drawing.Color.White;
-            this.lbl_i_index.Location = new System.Drawing.Point(6, 30);
-            this.lbl_i_index.Name = "lbl_i_index";
-            this.lbl_i_index.Size = new System.Drawing.Size(154, 21);
-            this.lbl_i_index.TabIndex = 12;
-            this.lbl_i_index.Text = "Row of Variable";
-            // 
-            // lbl_j_index
-            // 
-            this.lbl_j_index.AutoSize = true;
-            this.lbl_j_index.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_j_index.ForeColor = System.Drawing.Color.White;
-            this.lbl_j_index.Location = new System.Drawing.Point(6, 94);
-            this.lbl_j_index.Name = "lbl_j_index";
-            this.lbl_j_index.Size = new System.Drawing.Size(183, 21);
-            this.lbl_j_index.TabIndex = 13;
-            this.lbl_j_index.Text = "Column of Variable";
-            // 
-            // tb_j_index
-            // 
-            this.tb_j_index.Location = new System.Drawing.Point(6, 118);
-            this.tb_j_index.Name = "tb_j_index";
-            this.tb_j_index.Size = new System.Drawing.Size(199, 34);
-            this.tb_j_index.TabIndex = 14;
-            // 
             // tb_note
             // 
             this.tb_note.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
@@ -487,6 +452,44 @@
             this.tb_note.Size = new System.Drawing.Size(199, 47);
             this.tb_note.TabIndex = 14;
             this.tb_note.Text = "Enter the row and column index of a variable before running a command";
+            // 
+            // tb_j_index
+            // 
+            this.tb_j_index.Location = new System.Drawing.Point(6, 118);
+            this.tb_j_index.Name = "tb_j_index";
+            this.tb_j_index.Size = new System.Drawing.Size(199, 34);
+            this.tb_j_index.TabIndex = 14;
+            this.tb_j_index.Text = "1";
+            // 
+            // lbl_j_index
+            // 
+            this.lbl_j_index.AutoSize = true;
+            this.lbl_j_index.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_j_index.ForeColor = System.Drawing.Color.White;
+            this.lbl_j_index.Location = new System.Drawing.Point(6, 94);
+            this.lbl_j_index.Name = "lbl_j_index";
+            this.lbl_j_index.Size = new System.Drawing.Size(146, 17);
+            this.lbl_j_index.TabIndex = 13;
+            this.lbl_j_index.Text = "Column of Variable";
+            // 
+            // lbl_i_index
+            // 
+            this.lbl_i_index.AutoSize = true;
+            this.lbl_i_index.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_i_index.ForeColor = System.Drawing.Color.White;
+            this.lbl_i_index.Location = new System.Drawing.Point(6, 30);
+            this.lbl_i_index.Name = "lbl_i_index";
+            this.lbl_i_index.Size = new System.Drawing.Size(123, 17);
+            this.lbl_i_index.TabIndex = 12;
+            this.lbl_i_index.Text = "Row of Variable";
+            // 
+            // tb_i_index
+            // 
+            this.tb_i_index.Location = new System.Drawing.Point(5, 54);
+            this.tb_i_index.Name = "tb_i_index";
+            this.tb_i_index.Size = new System.Drawing.Size(199, 34);
+            this.tb_i_index.TabIndex = 11;
+            this.tb_i_index.Text = "1";
             // 
             // mainForm
             // 

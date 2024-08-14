@@ -11,6 +11,7 @@ namespace Project
         string path = "";
         LPModel model = readInput.ParseInputFile("Data/test.txt");
         LPModel sModel = new LPModel();
+        LPModel rModel = new LPModel();
         OpenFileDialog file = new OpenFileDialog();
         string output = "";
         List<List<double>> tableau;
@@ -37,9 +38,10 @@ namespace Project
 
             try
             {
-                convertToOptimal(model);
+                LPModel c_model = readInput.ParseInputFile(path);
+                convertToOptimal(c_model);
                 // Initialize the CuttingPlane class with the current LP model
-                CuttingPlane cuttingPlane = new CuttingPlane(model);
+                CuttingPlane cuttingPlane = new CuttingPlane(c_model);
 
                 // Solve the LP problem using the Cutting Plane method
                 var (solution, iterations) = cuttingPlane.Solve();
@@ -47,13 +49,13 @@ namespace Project
                 // Display the results
                 string var = "";
                 double z = 0;
-                convertToOptimal(model);
+                convertToOptimal(c_model);
 
                 for (int i = 0; i < solution.Length; i++)
                 {
                     if (solution[i] > 0)
                     {
-                        z += model.objCoefficients[i] * solution[i];
+                        z += c_model.objCoefficients[i] * solution[i];
                         var += $"{solution[i]}x{i + 1}\n";
                     }
                 }
@@ -67,7 +69,7 @@ namespace Project
                 lblDVans.Text = var;
                 tb_display.Text = output;
 
-                model.removeAddedConstraints(model);
+                c_model.removeAddedConstraints(c_model);
             }
             catch (Exception ex)
             {
@@ -86,6 +88,8 @@ namespace Project
                 model = readInput.ParseInputFile(path);
             }
             fillMissing(model);
+
+            rModel = new LPModel(model.objCoefficients, model.cCoefficients);
         }
 
         private void btn_canonical_Click(object sender, EventArgs e)
@@ -188,6 +192,8 @@ namespace Project
             lblDVans.Text = "";
             tb_display.Text = "";
             output = model.ConvertToCanonicalForm();
+            List<List<double>> con = new List<List<double>>();
+            List<double> obj = new List<double>();
 
             try
             {
@@ -216,7 +222,23 @@ namespace Project
                 convertToOptimal(model);
                 string finalIter = iterations[iterations.Count - 1];
 
+                Console.WriteLine(finalIter);
+
                 tableau = ConvertTableauStringToList(finalIter);
+
+                int index = tableau.Count - 1;
+                Console.WriteLine(index);
+
+                for (int i = 0; i < tableau[index].Count; i++)
+                {
+                    obj.Add(tableau[index][i]);
+                }
+
+                for (int i = 0; i < index; i++)
+                {
+                    con.Add(tableau[i]);
+                }
+                sModel = new LPModel(obj, con);
             }
             catch (Exception ex)
             {
@@ -280,7 +302,7 @@ namespace Project
 
         private void btn_Activity_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btn_change_Click(object sender, EventArgs e)
@@ -339,8 +361,6 @@ namespace Project
                 try
                 {
                     File.WriteAllText(tempPath, tb_display.Text);
-                    sModel = readInput.ParseInputFile(tempPath);
-                    fillMissing(sModel);
                     MessageBox.Show("File saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -379,6 +399,20 @@ namespace Project
                         model.cCoefficients[i].RemoveAt(index);
                         index--;
                     }
+                }
+            }
+        }
+
+        private void btn_range_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < sModel.cCoefficients.Count; i++)
+            {
+                for (int j = 0; j < sModel.objCoefficients.Count; j++)
+                {
+                    Console.Write(sModel.objCoefficients[j] + ", ");
+                    Console.WriteLine();
+                    Console.Write(rModel.objCoefficients[j] + ", ");
+                    Console.WriteLine();
                 }
             }
         }

@@ -383,6 +383,7 @@
             this.btn_Duality.TabIndex = 8;
             this.btn_Duality.Text = "Duality";
             this.btn_Duality.UseVisualStyleBackColor = true;
+            this.btn_Duality.Click += new System.EventHandler(this.btn_Duality_Click);
             // 
             // btn_Shadow
             // 
@@ -396,6 +397,7 @@
             this.btn_Shadow.TabIndex = 7;
             this.btn_Shadow.Text = "Shadow Price";
             this.btn_Shadow.UseVisualStyleBackColor = true;
+            this.btn_Shadow.Click += new System.EventHandler(this.btn_Shadow_Click);
             // 
             // btn_range
             // 

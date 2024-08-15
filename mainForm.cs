@@ -158,6 +158,8 @@ namespace Project
                 try
                 {
                     File.WriteAllText(path, tb_display.Text);
+                    File.WriteAllText(tempPath, tb_display.Text);
+
                     model = readInput.ParseInputFile(path);
                     fillMissing(model);
                     MessageBox.Show("File saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -316,43 +318,6 @@ namespace Project
             {
                 MessageBox.Show($"Error reading file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            //try
-            //{
-            //    string solution = "";
-            //    string heading = "";
-            //    string toFile = "";
-
-            //    for (int i = 0; i < tableau.Count; i++)
-            //    {
-            //        for (int j = 0; j < tableau[i].Count; j++)
-            //        {
-            //            solution += tableau[i][j] + "\t";
-            //            if (i == 0)
-            //            {
-            //                if (j == tableau[i].Count - 1)
-            //                {
-
-            //                    heading += "RHS";
-            //                }
-            //                else
-            //                {
-            //                    heading += $"x{j + 1}\t";
-            //                }
-            //            }
-            //        }
-            //        solution += "\n";
-            //    }
-
-            //    toFile += heading + "\n" + solution;
-            //    toFile += heading + "\n" + solution;
-            //    File.WriteAllText(tempPath, toFile);
-            //    tb_display.Text = File.ReadAllText(tempPath);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Error reading file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -423,6 +388,23 @@ namespace Project
             tb_display.Text += $"\nThe range for the variable {rModel.cCoefficients[rIndex][cIndex]} at index [{rIndex},{cIndex}]\n" +
                 $"Lower range: {lower}\n" +
                 $"Upper range: {upper}";
+        }
+
+        private void btn_Shadow_Click(object sender, EventArgs e)
+        {
+            List<double> sp = sens.CalculateShadowPrices(sModel);
+            tb_display.Text = "Shadow Price: \n";
+
+            foreach (var item in sp)
+            {
+                tb_display.Text += item + "\n";
+            }
+        }
+
+        private void btn_Duality_Click(object sender, EventArgs e)
+        {
+            tb_display.Text = "Duality: \n";
+            tb_display.Text += sens.CheckDuality(rModel, sModel);
         }
     }
 }

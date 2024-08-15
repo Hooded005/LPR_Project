@@ -8,10 +8,15 @@ namespace Project
 {
     public partial class mainForm : Form
     {
-        string path = "";
-        LPModel model = readInput.ParseInputFile("Data/test.txt");
+        LPModel model = new LPModel();
+        LPModel sModel = new LPModel();
+        LPModel rModel = new LPModel();
         OpenFileDialog file = new OpenFileDialog();
+        List<List<double>> tableau;
         string output = "";
+        string path = "";
+        string tempPath = "temp.txt";
+        Sensitivity sens = new Sensitivity();
 
         public mainForm()
         {
@@ -30,12 +35,14 @@ namespace Project
             lblZans.Text = "";
             lblDVans.Text = "";
             tb_display.Text = "";
+            output = model.ConvertToCanonicalForm();
 
             try
             {
-                convertToOptimal(model);
+                LPModel c_model = readInput.ParseInputFile(path);
+                convertToOptimal(c_model);
                 // Initialize the CuttingPlane class with the current LP model
-                CuttingPlane cuttingPlane = new CuttingPlane(model);
+                CuttingPlane cuttingPlane = new CuttingPlane(c_model);
 
                 // Solve the LP problem using the Cutting Plane method
                 var (solution, iterations) = cuttingPlane.Solve();
@@ -43,18 +50,18 @@ namespace Project
                 // Display the results
                 string var = "";
                 double z = 0;
-                convertToOptimal(model);
+                convertToOptimal(c_model);
 
                 for (int i = 0; i < solution.Length; i++)
                 {
                     if (solution[i] > 0)
                     {
-                        z += model.objCoefficients[i] * solution[i];
+                        z += c_model.objCoefficients[i] * solution[i];
                         var += $"{solution[i]}x{i + 1}\n";
                     }
                 }
 
-                output += $"Z: {z}\n" +
+                output += $"\nZ: {z}\n" +
                   $"Decision Variables: {var}\n" +
                   $"Iterations:\n" +
                   $"{string.Join("\n", iterations)}";
@@ -63,7 +70,7 @@ namespace Project
                 lblDVans.Text = var;
                 tb_display.Text = output;
 
-                model.removeAddedConstraints(model);
+                c_model.removeAddedConstraints(c_model);
             }
             catch (Exception ex)
             {
@@ -81,37 +88,21 @@ namespace Project
                 path = file.FileName;
                 model = readInput.ParseInputFile(path);
             }
-            for (int i = 0; i < model.cCoefficients.Count; i++)
-            {
-                if (model.cCoefficients[i].Count < model.objCoefficients.Count)
-                {
-                    int dif = model.objCoefficients.Count - model.cCoefficients[i].Count;
-                    for (int j = 0; j < dif; j++)
-                    {
-                        model.cCoefficients[i].Add(0);
-                    }
-                }
-            }
+            fillMissing(model);
+
+            List<List<double>> doubles = new List<List<double>>();
 
             for (int i = 0; i < model.cCoefficients.Count; i++)
             {
-                if (model.cCoefficients[i].Count > model.objCoefficients.Count)
-                {
-                    int dif = model.cCoefficients[i].Count - model.objCoefficients.Count;
-                    int index = model.cCoefficients[i].Count - 1;
-
-                    for (int j = 0; j < dif; j++)
-                    {
-                        model.cCoefficients[i].RemoveAt(index);
-                        index--;
-                    }
-                }
+                doubles.Add(model.cCoefficients[i]);
             }
+            doubles.Add(model.objCoefficients);
+
+            rModel = new LPModel(doubles);
         }
 
         private void btn_canonical_Click(object sender, EventArgs e)
         {
-            tb_display.Text = "";
             tb_display.Text = model.ConvertToCanonicalForm();
         }
 
@@ -119,9 +110,8 @@ namespace Project
         {
             lblZans.Text = "";
             lblDVans.Text = "";
-            tb_display.Text = "";
             tb_display.Text = model.ConvertToCanonicalForm();
-            output = "";
+            output = model.ConvertToCanonicalForm();
 
             if (model.cCoefficients.Count == 1)
             {
@@ -138,7 +128,7 @@ namespace Project
                 lblZans.Text = z.ToString();
                 lblDVans.Text = string.Join(", ", decVar);
 
-                output += $"Branches:\n" +
+                output += $"\nBranches:\n" +
                     $"{tb_display.Text}";
             }
             else
@@ -168,7 +158,10 @@ namespace Project
                 try
                 {
                     File.WriteAllText(path, tb_display.Text);
+                    File.WriteAllText(tempPath, tb_display.Text);
+
                     model = readInput.ParseInputFile(path);
+                    fillMissing(model);
                     MessageBox.Show("File saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -209,10 +202,11 @@ namespace Project
             lblZans.Text = "";
             lblDVans.Text = "";
             tb_display.Text = "";
+            output = model.ConvertToCanonicalForm();
+            List<List<double>> con = new List<List<double>>();
 
             try
             {
-                output = "";
                 convertToOptimal(model);
 
                 var (z, decVar, iterations) = PrimalSimplex.simplex(model, 0);
@@ -226,7 +220,7 @@ namespace Project
                     }
                 }
 
-                output += $"Z: {Math.Round(z, 2)}\n" +
+                output += $"\nZ: {Math.Round(z, 2)}\n" +
                   $"Decision Variables: {var}\n" +
                   $"Iterations:\n" +
                   $"{string.Join("\n", iterations)}";
@@ -237,10 +231,18 @@ namespace Project
 
                 convertToOptimal(model);
                 string finalIter = iterations[iterations.Count - 1];
-                Console.WriteLine(finalIter);
 
-                List<List<double>> tableau = ConvertTableauStringToList(finalIter);
+                tableau = ConvertTableauStringToList(finalIter);
+
+                int index = tableau.Count;
+
+                for (int i = 0; i < index; i++)
+                {
+                    con.Add(tableau[i]);
+                }
+                sModel = new LPModel(con);
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -299,6 +301,110 @@ namespace Project
             }
 
             return result;
+        }
+
+        private void btn_Activity_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_change_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                tb_display.Text = File.ReadAllText(path);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error reading file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(tempPath))
+            {
+                try
+                {
+                    File.WriteAllText(tempPath, tb_display.Text);
+                    MessageBox.Show("File saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error saving file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No file selected to save.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void fillMissing(LPModel model)
+        {
+            for (int i = 0; i < model.cCoefficients.Count; i++)
+            {
+                if (model.cCoefficients[i].Count < model.objCoefficients.Count)
+                {
+                    int dif = model.objCoefficients.Count - model.cCoefficients[i].Count;
+                    for (int j = 0; j < dif; j++)
+                    {
+                        model.cCoefficients[i].Add(0);
+                    }
+                }
+            }
+            for (int i = 0; i < model.cCoefficients.Count; i++)
+            {
+                if (model.cCoefficients[i].Count > model.objCoefficients.Count)
+                {
+                    int dif = model.cCoefficients[i].Count - model.objCoefficients.Count;
+                    int index = model.cCoefficients[i].Count - 1;
+
+                    for (int j = 0; j < dif; j++)
+                    {
+                        model.cCoefficients[i].RemoveAt(index);
+                        index--;
+                    }
+                }
+            }
+        }
+
+        private void btn_range_Click(object sender, EventArgs e)
+        {
+            int rIndex = int.Parse(tb_i_index.Text);
+            int cIndex = int.Parse(tb_j_index.Text);
+            tb_display.Text = "";
+
+            for (int i = 0; i < rModel.cCoefficients.Count; i++)
+            {
+                for (int j = 0; j < rModel.cCoefficients[i].Count; j++)
+                {
+                    tb_display.Text += rModel.cCoefficients[i][j] + "\t";
+                }
+                tb_display.Text += "\n";
+            }
+
+            var (lower, upper) = sens.FindRange(rModel, sModel, rIndex, cIndex);
+            tb_display.Text += $"\nThe range for the variable {rModel.cCoefficients[rIndex][cIndex]} at index [{rIndex},{cIndex}]\n" +
+                $"Lower range: {lower}\n" +
+                $"Upper range: {upper}";
+        }
+
+        private void btn_Shadow_Click(object sender, EventArgs e)
+        {
+            List<double> sp = sens.CalculateShadowPrices(sModel);
+            tb_display.Text = "Shadow Price: \n";
+
+            foreach (var item in sp)
+            {
+                tb_display.Text += item + "\n";
+            }
+        }
+
+        private void btn_Duality_Click(object sender, EventArgs e)
+        {
+            tb_display.Text = "Duality: \n";
+            tb_display.Text += sens.CheckDuality(rModel, sModel);
         }
     }
 }

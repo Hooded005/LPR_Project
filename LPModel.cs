@@ -15,9 +15,8 @@ namespace Project
             cRHS = new List<double>();
             varTypes = new List<string>();
         }
-        public LPModel(List<double> obj, List<List<double>> con)
+        public LPModel(List<List<double>> con)
         {
-            objCoefficients = obj;
             cCoefficients = con;
         }
 

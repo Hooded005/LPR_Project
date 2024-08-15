@@ -459,7 +459,7 @@
             this.tb_j_index.Name = "tb_j_index";
             this.tb_j_index.Size = new System.Drawing.Size(199, 34);
             this.tb_j_index.TabIndex = 14;
-            this.tb_j_index.Text = "1";
+            this.tb_j_index.Text = "0";
             // 
             // lbl_j_index
             // 
@@ -489,7 +489,7 @@
             this.tb_i_index.Name = "tb_i_index";
             this.tb_i_index.Size = new System.Drawing.Size(199, 34);
             this.tb_i_index.TabIndex = 11;
-            this.tb_i_index.Text = "1";
+            this.tb_i_index.Text = "0";
             // 
             // mainForm
             // 

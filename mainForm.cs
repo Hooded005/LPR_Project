@@ -8,14 +8,15 @@ namespace Project
 {
     public partial class mainForm : Form
     {
-        string path = "";
-        LPModel model = readInput.ParseInputFile("Data/test.txt");
+        LPModel model = new LPModel();
         LPModel sModel = new LPModel();
         LPModel rModel = new LPModel();
         OpenFileDialog file = new OpenFileDialog();
-        string output = "";
         List<List<double>> tableau;
+        string output = "";
+        string path = "";
         string tempPath = "temp.txt";
+        Sensitivity sens = new Sensitivity();
 
         public mainForm()
         {
@@ -89,7 +90,15 @@ namespace Project
             }
             fillMissing(model);
 
-            rModel = new LPModel(model.objCoefficients, model.cCoefficients);
+            List<List<double>> doubles = new List<List<double>>();
+
+            for (int i = 0; i < model.cCoefficients.Count; i++)
+            {
+                doubles.Add(model.cCoefficients[i]);
+            }
+            doubles.Add(model.objCoefficients);
+
+            rModel = new LPModel(doubles);
         }
 
         private void btn_canonical_Click(object sender, EventArgs e)
@@ -193,7 +202,6 @@ namespace Project
             tb_display.Text = "";
             output = model.ConvertToCanonicalForm();
             List<List<double>> con = new List<List<double>>();
-            List<double> obj = new List<double>();
 
             try
             {
@@ -222,24 +230,17 @@ namespace Project
                 convertToOptimal(model);
                 string finalIter = iterations[iterations.Count - 1];
 
-                Console.WriteLine(finalIter);
-
                 tableau = ConvertTableauStringToList(finalIter);
 
-                int index = tableau.Count - 1;
-                Console.WriteLine(index);
-
-                for (int i = 0; i < tableau[index].Count; i++)
-                {
-                    obj.Add(tableau[index][i]);
-                }
+                int index = tableau.Count;
 
                 for (int i = 0; i < index; i++)
                 {
                     con.Add(tableau[i]);
                 }
-                sModel = new LPModel(obj, con);
+                sModel = new LPModel(con);
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -405,16 +406,23 @@ namespace Project
 
         private void btn_range_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < sModel.cCoefficients.Count; i++)
+            int rIndex = int.Parse(tb_i_index.Text);
+            int cIndex = int.Parse(tb_j_index.Text);
+            tb_display.Text = "";
+
+            for (int i = 0; i < rModel.cCoefficients.Count; i++)
             {
-                for (int j = 0; j < sModel.objCoefficients.Count; j++)
+                for (int j = 0; j < rModel.cCoefficients[i].Count; j++)
                 {
-                    Console.Write(sModel.objCoefficients[j] + ", ");
-                    Console.WriteLine();
-                    Console.Write(rModel.objCoefficients[j] + ", ");
-                    Console.WriteLine();
+                    tb_display.Text += rModel.cCoefficients[i][j] + "\t";
                 }
+                tb_display.Text += "\n";
             }
+
+            var (lower, upper) = sens.FindRange(rModel, sModel, rIndex, cIndex);
+            tb_display.Text += $"\nThe range for the variable {rModel.cCoefficients[rIndex][cIndex]} at index [{rIndex},{cIndex}]\n" +
+                $"Lower range: {lower}\n" +
+                $"Upper range: {upper}";
         }
     }
 }

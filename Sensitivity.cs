@@ -87,87 +87,38 @@ namespace Project
 
         public List<double> CalculateShadowPrices(LPModel solvedModel)
         {
-            int numConstraints = solvedModel.cCoefficients.Count - 1;
-            int numVariables = solvedModel.cCoefficients[0].Count - 1; // Excluding RHS column
-            List<double> shadowPrices = new List<double>();
+            var shadowPrices = new List<double>();
+            int lastRowIndex = solvedModel.cCoefficients.Count - 1;
+            int lastColIndex = solvedModel.cCoefficients[lastRowIndex].Count - 1;
 
-            // The shadow prices are determined from the coefficients of the slack variables in the last row of the tableau
-            for (int i = 0; i < numConstraints; i++)
+            for (int i = 0; i < lastRowIndex; i++)
             {
-                // The shadow price for each constraint is in the last row, corresponding to the column of the slack variable for that constraint
-                double shadowPrice = solvedModel.cCoefficients[numConstraints][i];
+                double shadowPrice = solvedModel.cCoefficients[i][lastColIndex];
                 shadowPrices.Add(shadowPrice);
             }
-
             return shadowPrices;
         }
 
-        public bool CheckDuality(LPModel primalModel, LPModel solvedPrimalModel)
+        public (string dualityType, double primalObjective, double dualObjective) CalculateDuality(LPModel model)
         {
-            // Formulate the dual model
-            LPModel dualModel = FormulateDual(primalModel);
+            // Extract the objective function coefficients (last row)
+            List<double> objCoefficients = model.cCoefficients[model.cCoefficients.Count - 1];
+            double primalObjective = 0;
 
-            // Solve the dual model
-            var (optimalDualValue, _, _) = dualModel.Solve();
-
-            // Check if strong duality holds
-            double optimalPrimalValue = solvedPrimalModel.Solve().optimalValue;
-
-            // Compare the optimal values of primal and dual
-            bool strongDualityHolds = Math.Abs(optimalPrimalValue - optimalDualValue) < 1e-6;
-
-            return strongDualityHolds;
-        }
-
-        private LPModel FormulateDual(LPModel primalModel)
-        {
-
-            int lastRow = primalModel.cCoefficients.Count - 1;
-            int lastCol = primalModel.cCoefficients[lastRow].Count - 1;
-            List<List<double>> e = new List<List<double>>();
-            LPModel dualModel = new LPModel(e);
-
-            // Set objective function to maximize/minimize based on primal's minimization/maximization
-            dualModel.IsMax = !primalModel.IsMax;
-
-            // Number of primal constraints becomes the number of dual variables
-            int numVariables = primalModel.cCoefficients[lastRow].Count;
-            int numConstraints = primalModel.cCoefficients.Count;
-
-            // Dual objective function coefficients
-            dualModel.objCoefficients = new List<double>(numConstraints);
-            for (int i = 0; i < numConstraints; i++)
+            // Calculate the primal objective value
+            for (int i = 0; i < model.cCoefficients.Count - 1; i++)
             {
-                dualModel.cCoefficients.Add(primalModel.cCoefficients[i]);
+                // Multiply objective function coefficient by the RHS of the corresponding constraint
+                primalObjective += objCoefficients[i] * model.cCoefficients[i][model.cCoefficients[i].Count - 1];
             }
 
-            // Dual constraints coefficients
-            dualModel.cCoefficients = new List<List<double>>();
-            for (int j = 0; j < numVariables; j++)
-            {
-                var dualRow = new List<double>(numConstraints);
-                for (int i = 0; i < numConstraints; i++)
-                {
-                    dualRow.Add(primalModel.cCoefficients[i][j]);
-                }
-                dualModel.cCoefficients.Add(dualRow);
-            }
+            // The dual objective value is typically the RHS value in the objective row
+            double dualObjective = objCoefficients[objCoefficients.Count - 1];
 
-            // Dual constraints RHS
-            dualModel.cCoefficients[lastRow] = new List<double>(numVariables);
-            for (int i = 0; i < numVariables; i++)
-            {
-                dualModel.cCoefficients.Add(primalModel.cCoefficients[i]);
-            }
+            // Determine duality type
+            string dualityType = (primalObjective == dualObjective) ? "Strong Duality" : "Weak Duality";
 
-            // Variable types for the dual model
-            dualModel.varTypes = new List<string>();
-            for (int i = 0; i < numConstraints; i++)
-            {
-                dualModel.varTypes.Add("Continuous"); // Assuming continuous variables in the dual model
-            }
-
-            return dualModel;
+            return (dualityType, primalObjective, dualObjective);
         }
     }
 }

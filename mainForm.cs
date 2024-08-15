@@ -403,8 +403,12 @@ namespace Project
 
         private void btn_Duality_Click(object sender, EventArgs e)
         {
-            tb_display.Text = "Duality: \n";
-            tb_display.Text += sens.CheckDuality(rModel, sModel);
+            tb_display.Text = "Duality:";
+            var (duality, z, dZ) = sens.CalculateDuality(rModel);
+
+            tb_display.Text += $"{duality}\n" +
+                $"Z value = {z}\n" +
+                $"Duality Z value = {dZ}";
         }
     }
 }

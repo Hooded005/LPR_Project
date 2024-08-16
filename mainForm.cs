@@ -410,5 +410,11 @@ namespace Project
                 $"Z value = {z}\n" +
                 $"Duality Z value = {dZ}";
         }
+
+        private void btn_bnb_Click(object sender, EventArgs e)
+        {
+            Form bnbDisplay = new bnbDisplay();
+            bnbDisplay.Show();
+        }
     }
 }

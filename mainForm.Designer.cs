@@ -118,6 +118,7 @@
             this.btn_bnb.TabIndex = 3;
             this.btn_bnb.Text = "Branch and Bound";
             this.btn_bnb.UseVisualStyleBackColor = true;
+            this.btn_bnb.Click += new System.EventHandler(this.btn_bnb_Click);
             // 
             // btn_cuttingPlane
             // 

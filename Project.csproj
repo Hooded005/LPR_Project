@@ -47,9 +47,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BnB.cs" />
+    <Compile Include="bnbDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="bnbDisplay.Designer.cs" />
+    <Compile Include="Checks.cs" />
     <Compile Include="CuttingPlane.cs" />
+    <Compile Include="Excess.cs" />
     <Compile Include="Knapsack.cs" />
     <Compile Include="knapsackNode.cs" />
+    <Compile Include="ListTracker.cs" />
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +70,9 @@
     <Compile Include="readInput.cs" />
     <Compile Include="Revised.cs" />
     <Compile Include="Sensitivity.cs" />
+    <Compile Include="Slack.cs" />
+    <Compile Include="TwoPhase.cs" />
+    <EmbeddedResource Include="bnbDisplay.resx" />
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -1,3 +1,8 @@
+Maximize
+Z = 2x1 + 3x2 + 3x3 + 5x4 + 2x5 + 4x6
+C1: 11x1 + 8x2 + 6x3 + 14x4 + 10x5 + 10x6 <= 40
+Variable types: bin, bin, bin, bin, bin, bin, bin
+
 Z: 20
 Decision Variables: 6,67x3
 

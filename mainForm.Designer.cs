@@ -48,36 +48,40 @@
             this.lblDV = new System.Windows.Forms.Label();
             this.lblZ = new System.Windows.Forms.Label();
             this.gp_sensitivity = new System.Windows.Forms.GroupBox();
+            this.btn_save_sen = new System.Windows.Forms.Button();
             this.btn_output = new System.Windows.Forms.Button();
             this.btn_Duality = new System.Windows.Forms.Button();
             this.btn_Shadow = new System.Windows.Forms.Button();
-            this.btn_Constraint = new System.Windows.Forms.Button();
-            this.btn_NBV = new System.Windows.Forms.Button();
-            this.btn_Activity = new System.Windows.Forms.Button();
-            this.btn_BV = new System.Windows.Forms.Button();
-            this.btn_NBVC = new System.Windows.Forms.Button();
-            this.btn_RHS = new System.Windows.Forms.Button();
+            this.btn_range = new System.Windows.Forms.Button();
+            this.btn_change = new System.Windows.Forms.Button();
+            this.gp_range = new System.Windows.Forms.GroupBox();
+            this.tb_note = new System.Windows.Forms.RichTextBox();
+            this.tb_j_index = new System.Windows.Forms.TextBox();
+            this.lbl_j_index = new System.Windows.Forms.Label();
+            this.lbl_i_index = new System.Windows.Forms.Label();
+            this.tb_i_index = new System.Windows.Forms.TextBox();
             this.gb_algorithms.SuspendLayout();
             this.gb_controls.SuspendLayout();
             this.gb_errors.SuspendLayout();
             this.gp_sensitivity.SuspendLayout();
+            this.gp_range.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl01
             // 
             this.lbl01.AutoSize = true;
-            this.lbl01.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl01.Font = new System.Drawing.Font("Arial Rounded MT Bold", 16.2F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl01.ForeColor = System.Drawing.Color.Cyan;
             this.lbl01.Location = new System.Drawing.Point(516, 9);
             this.lbl01.Name = "lbl01";
-            this.lbl01.Size = new System.Drawing.Size(290, 32);
+            this.lbl01.Size = new System.Drawing.Size(311, 32);
             this.lbl01.TabIndex = 0;
             this.lbl01.Text = "LPR Project Group 19";
             // 
             // btn_Simplex
             // 
             this.btn_Simplex.FlatAppearance.BorderSize = 10;
-            this.btn_Simplex.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Simplex.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Simplex.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.btn_Simplex.Location = new System.Drawing.Point(5, 33);
             this.btn_Simplex.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -91,7 +95,7 @@
             // btn_revised
             // 
             this.btn_revised.FlatAppearance.BorderSize = 10;
-            this.btn_revised.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_revised.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_revised.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.btn_revised.Location = new System.Drawing.Point(5, 75);
             this.btn_revised.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -105,7 +109,7 @@
             // btn_bnb
             // 
             this.btn_bnb.FlatAppearance.BorderSize = 10;
-            this.btn_bnb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_bnb.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_bnb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.btn_bnb.Location = new System.Drawing.Point(5, 117);
             this.btn_bnb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -118,7 +122,7 @@
             // btn_cuttingPlane
             // 
             this.btn_cuttingPlane.FlatAppearance.BorderSize = 10;
-            this.btn_cuttingPlane.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_cuttingPlane.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cuttingPlane.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.btn_cuttingPlane.Location = new System.Drawing.Point(5, 159);
             this.btn_cuttingPlane.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -132,7 +136,7 @@
             // btn_knapsack
             // 
             this.btn_knapsack.FlatAppearance.BorderSize = 10;
-            this.btn_knapsack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_knapsack.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_knapsack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.btn_knapsack.Location = new System.Drawing.Point(5, 201);
             this.btn_knapsack.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -150,7 +154,7 @@
             this.gb_algorithms.Controls.Add(this.btn_revised);
             this.gb_algorithms.Controls.Add(this.btn_cuttingPlane);
             this.gb_algorithms.Controls.Add(this.btn_bnb);
-            this.gb_algorithms.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gb_algorithms.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gb_algorithms.ForeColor = System.Drawing.Color.Cyan;
             this.gb_algorithms.Location = new System.Drawing.Point(33, 295);
             this.gb_algorithms.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -168,7 +172,7 @@
             this.gb_controls.Controls.Add(this.btn_File);
             this.gb_controls.Controls.Add(this.btn_canonical);
             this.gb_controls.Controls.Add(this.btn_edit);
-            this.gb_controls.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gb_controls.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gb_controls.ForeColor = System.Drawing.Color.Cyan;
             this.gb_controls.Location = new System.Drawing.Point(33, 44);
             this.gb_controls.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -182,7 +186,7 @@
             // btn_Write
             // 
             this.btn_Write.FlatAppearance.BorderSize = 10;
-            this.btn_Write.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Write.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Write.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.btn_Write.Location = new System.Drawing.Point(7, 201);
             this.btn_Write.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -196,7 +200,7 @@
             // btn_save
             // 
             this.btn_save.FlatAppearance.BorderSize = 10;
-            this.btn_save.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_save.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_save.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.btn_save.Location = new System.Drawing.Point(7, 159);
             this.btn_save.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -210,7 +214,7 @@
             // btn_File
             // 
             this.btn_File.FlatAppearance.BorderSize = 10;
-            this.btn_File.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_File.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_File.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.btn_File.Location = new System.Drawing.Point(5, 33);
             this.btn_File.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -224,7 +228,7 @@
             // btn_canonical
             // 
             this.btn_canonical.FlatAppearance.BorderSize = 10;
-            this.btn_canonical.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_canonical.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_canonical.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.btn_canonical.Location = new System.Drawing.Point(7, 75);
             this.btn_canonical.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -238,7 +242,7 @@
             // btn_edit
             // 
             this.btn_edit.FlatAppearance.BorderSize = 10;
-            this.btn_edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_edit.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_edit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.btn_edit.Location = new System.Drawing.Point(5, 117);
             this.btn_edit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -252,12 +256,12 @@
             // tb_display
             // 
             this.tb_display.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.tb_display.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_display.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_display.ForeColor = System.Drawing.Color.White;
-            this.tb_display.Location = new System.Drawing.Point(281, 44);
+            this.tb_display.Location = new System.Drawing.Point(281, 47);
             this.tb_display.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_display.Name = "tb_display";
-            this.tb_display.Size = new System.Drawing.Size(773, 498);
+            this.tb_display.Size = new System.Drawing.Size(773, 495);
             this.tb_display.TabIndex = 8;
             this.tb_display.Text = "";
             // 
@@ -268,7 +272,7 @@
             this.gb_errors.Controls.Add(this.lblZans);
             this.gb_errors.Controls.Add(this.lblDV);
             this.gb_errors.Controls.Add(this.lblZ);
-            this.gb_errors.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gb_errors.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gb_errors.ForeColor = System.Drawing.Color.White;
             this.gb_errors.Location = new System.Drawing.Point(281, 546);
             this.gb_errors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -285,7 +289,7 @@
             this.lblDVans.ForeColor = System.Drawing.Color.White;
             this.lblDVans.Location = new System.Drawing.Point(219, 59);
             this.lblDVans.Name = "lblDVans";
-            this.lblDVans.Size = new System.Drawing.Size(40, 25);
+            this.lblDVans.Size = new System.Drawing.Size(40, 23);
             this.lblDVans.TabIndex = 13;
             this.lblDVans.Text = "n/a";
             // 
@@ -295,7 +299,7 @@
             this.lblZans.ForeColor = System.Drawing.Color.White;
             this.lblZans.Location = new System.Drawing.Point(47, 27);
             this.lblZans.Name = "lblZans";
-            this.lblZans.Size = new System.Drawing.Size(23, 25);
+            this.lblZans.Size = new System.Drawing.Size(22, 23);
             this.lblZans.TabIndex = 12;
             this.lblZans.Text = "0";
             // 
@@ -305,7 +309,7 @@
             this.lblDV.ForeColor = System.Drawing.Color.White;
             this.lblDV.Location = new System.Drawing.Point(5, 59);
             this.lblDV.Name = "lblDV";
-            this.lblDV.Size = new System.Drawing.Size(180, 25);
+            this.lblDV.Size = new System.Drawing.Size(198, 23);
             this.lblDV.TabIndex = 11;
             this.lblDV.Text = "Decision Variables:";
             // 
@@ -315,39 +319,50 @@
             this.lblZ.ForeColor = System.Drawing.Color.White;
             this.lblZ.Location = new System.Drawing.Point(5, 27);
             this.lblZ.Name = "lblZ";
-            this.lblZ.Size = new System.Drawing.Size(46, 25);
+            this.lblZ.Size = new System.Drawing.Size(45, 23);
             this.lblZ.TabIndex = 10;
             this.lblZ.Text = "Z = ";
             // 
             // gp_sensitivity
             // 
+            this.gp_sensitivity.Controls.Add(this.btn_save_sen);
             this.gp_sensitivity.Controls.Add(this.btn_output);
             this.gp_sensitivity.Controls.Add(this.btn_Duality);
             this.gp_sensitivity.Controls.Add(this.btn_Shadow);
-            this.gp_sensitivity.Controls.Add(this.btn_Constraint);
-            this.gp_sensitivity.Controls.Add(this.btn_NBV);
-            this.gp_sensitivity.Controls.Add(this.btn_Activity);
-            this.gp_sensitivity.Controls.Add(this.btn_BV);
-            this.gp_sensitivity.Controls.Add(this.btn_NBVC);
-            this.gp_sensitivity.Controls.Add(this.btn_RHS);
-            this.gp_sensitivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gp_sensitivity.Controls.Add(this.btn_range);
+            this.gp_sensitivity.Controls.Add(this.btn_change);
+            this.gp_sensitivity.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gp_sensitivity.ForeColor = System.Drawing.Color.Cyan;
-            this.gp_sensitivity.Location = new System.Drawing.Point(1091, 78);
+            this.gp_sensitivity.Location = new System.Drawing.Point(1092, 47);
             this.gp_sensitivity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gp_sensitivity.Name = "gp_sensitivity";
             this.gp_sensitivity.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gp_sensitivity.Size = new System.Drawing.Size(213, 414);
+            this.gp_sensitivity.Size = new System.Drawing.Size(230, 278);
             this.gp_sensitivity.TabIndex = 7;
             this.gp_sensitivity.TabStop = false;
             this.gp_sensitivity.Text = "Sensitivity";
             this.gp_sensitivity.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // btn_save_sen
+            // 
+            this.btn_save_sen.FlatAppearance.BorderSize = 10;
+            this.btn_save_sen.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_save_sen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.btn_save_sen.Location = new System.Drawing.Point(9, 112);
+            this.btn_save_sen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_save_sen.Name = "btn_save_sen";
+            this.btn_save_sen.Size = new System.Drawing.Size(199, 36);
+            this.btn_save_sen.TabIndex = 8;
+            this.btn_save_sen.Text = "Save";
+            this.btn_save_sen.UseVisualStyleBackColor = true;
+            this.btn_save_sen.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // btn_output
             // 
             this.btn_output.FlatAppearance.BorderSize = 10;
-            this.btn_output.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_output.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_output.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btn_output.Location = new System.Drawing.Point(8, 369);
+            this.btn_output.Location = new System.Drawing.Point(9, 234);
             this.btn_output.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_output.Name = "btn_output";
             this.btn_output.Size = new System.Drawing.Size(199, 36);
@@ -359,107 +374,124 @@
             // btn_Duality
             // 
             this.btn_Duality.FlatAppearance.BorderSize = 10;
-            this.btn_Duality.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Duality.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Duality.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btn_Duality.Location = new System.Drawing.Point(8, 327);
+            this.btn_Duality.Location = new System.Drawing.Point(9, 192);
             this.btn_Duality.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_Duality.Name = "btn_Duality";
             this.btn_Duality.Size = new System.Drawing.Size(199, 36);
             this.btn_Duality.TabIndex = 8;
             this.btn_Duality.Text = "Duality";
             this.btn_Duality.UseVisualStyleBackColor = true;
+            this.btn_Duality.Click += new System.EventHandler(this.btn_Duality_Click);
             // 
             // btn_Shadow
             // 
             this.btn_Shadow.FlatAppearance.BorderSize = 10;
-            this.btn_Shadow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Shadow.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Shadow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btn_Shadow.Location = new System.Drawing.Point(8, 286);
+            this.btn_Shadow.Location = new System.Drawing.Point(9, 152);
             this.btn_Shadow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_Shadow.Name = "btn_Shadow";
             this.btn_Shadow.Size = new System.Drawing.Size(199, 36);
             this.btn_Shadow.TabIndex = 7;
             this.btn_Shadow.Text = "Shadow Price";
             this.btn_Shadow.UseVisualStyleBackColor = true;
+            this.btn_Shadow.Click += new System.EventHandler(this.btn_Shadow_Click);
             // 
-            // btn_Constraint
+            // btn_range
             // 
-            this.btn_Constraint.FlatAppearance.BorderSize = 10;
-            this.btn_Constraint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Constraint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btn_Constraint.Location = new System.Drawing.Point(8, 242);
-            this.btn_Constraint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_Constraint.Name = "btn_Constraint";
-            this.btn_Constraint.Size = new System.Drawing.Size(199, 36);
-            this.btn_Constraint.TabIndex = 6;
-            this.btn_Constraint.Text = "Add Constraint";
-            this.btn_Constraint.UseVisualStyleBackColor = true;
+            this.btn_range.FlatAppearance.BorderSize = 10;
+            this.btn_range.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_range.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.btn_range.Location = new System.Drawing.Point(9, 31);
+            this.btn_range.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_range.Name = "btn_range";
+            this.btn_range.Size = new System.Drawing.Size(199, 36);
+            this.btn_range.TabIndex = 1;
+            this.btn_range.Text = "Range";
+            this.btn_range.UseVisualStyleBackColor = true;
+            this.btn_range.Click += new System.EventHandler(this.btn_range_Click);
             // 
-            // btn_NBV
+            // btn_change
             // 
-            this.btn_NBV.FlatAppearance.BorderSize = 10;
-            this.btn_NBV.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_NBV.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btn_NBV.Location = new System.Drawing.Point(5, 33);
-            this.btn_NBV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_NBV.Name = "btn_NBV";
-            this.btn_NBV.Size = new System.Drawing.Size(199, 36);
-            this.btn_NBV.TabIndex = 1;
-            this.btn_NBV.Text = "Non-Basic";
-            this.btn_NBV.UseVisualStyleBackColor = true;
-            this.btn_NBV.Click += new System.EventHandler(this.btn_NBV_Click);
+            this.btn_change.FlatAppearance.BorderSize = 10;
+            this.btn_change.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_change.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.btn_change.Location = new System.Drawing.Point(9, 72);
+            this.btn_change.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_change.Name = "btn_change";
+            this.btn_change.Size = new System.Drawing.Size(199, 36);
+            this.btn_change.TabIndex = 2;
+            this.btn_change.Text = "Edit";
+            this.btn_change.UseVisualStyleBackColor = true;
+            this.btn_change.Click += new System.EventHandler(this.btn_change_Click);
             // 
-            // btn_Activity
+            // gp_range
             // 
-            this.btn_Activity.FlatAppearance.BorderSize = 10;
-            this.btn_Activity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Activity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btn_Activity.Location = new System.Drawing.Point(5, 201);
-            this.btn_Activity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_Activity.Name = "btn_Activity";
-            this.btn_Activity.Size = new System.Drawing.Size(199, 36);
-            this.btn_Activity.TabIndex = 5;
-            this.btn_Activity.Text = "Add Variable";
-            this.btn_Activity.UseVisualStyleBackColor = true;
+            this.gp_range.Controls.Add(this.tb_note);
+            this.gp_range.Controls.Add(this.tb_j_index);
+            this.gp_range.Controls.Add(this.lbl_j_index);
+            this.gp_range.Controls.Add(this.lbl_i_index);
+            this.gp_range.Controls.Add(this.tb_i_index);
+            this.gp_range.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gp_range.ForeColor = System.Drawing.Color.Cyan;
+            this.gp_range.Location = new System.Drawing.Point(1092, 330);
+            this.gp_range.Name = "gp_range";
+            this.gp_range.Size = new System.Drawing.Size(230, 211);
+            this.gp_range.TabIndex = 10;
+            this.gp_range.TabStop = false;
+            this.gp_range.Text = "Range";
             // 
-            // btn_BV
+            // tb_note
             // 
-            this.btn_BV.FlatAppearance.BorderSize = 10;
-            this.btn_BV.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_BV.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btn_BV.Location = new System.Drawing.Point(5, 75);
-            this.btn_BV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_BV.Name = "btn_BV";
-            this.btn_BV.Size = new System.Drawing.Size(199, 36);
-            this.btn_BV.TabIndex = 2;
-            this.btn_BV.Text = "Basic";
-            this.btn_BV.UseVisualStyleBackColor = true;
+            this.tb_note.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.tb_note.Font = new System.Drawing.Font("Arial Rounded MT Bold", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_note.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.tb_note.Location = new System.Drawing.Point(6, 158);
+            this.tb_note.Name = "tb_note";
+            this.tb_note.ReadOnly = true;
+            this.tb_note.Size = new System.Drawing.Size(199, 47);
+            this.tb_note.TabIndex = 14;
+            this.tb_note.Text = "Enter the row and column index of a variable before running a command";
             // 
-            // btn_NBVC
+            // tb_j_index
             // 
-            this.btn_NBVC.FlatAppearance.BorderSize = 10;
-            this.btn_NBVC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_NBVC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btn_NBVC.Location = new System.Drawing.Point(5, 159);
-            this.btn_NBVC.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_NBVC.Name = "btn_NBVC";
-            this.btn_NBVC.Size = new System.Drawing.Size(199, 36);
-            this.btn_NBVC.TabIndex = 4;
-            this.btn_NBVC.Text = "NBV Column";
-            this.btn_NBVC.UseVisualStyleBackColor = true;
+            this.tb_j_index.Location = new System.Drawing.Point(6, 118);
+            this.tb_j_index.Name = "tb_j_index";
+            this.tb_j_index.Size = new System.Drawing.Size(199, 34);
+            this.tb_j_index.TabIndex = 14;
+            this.tb_j_index.Text = "0";
             // 
-            // btn_RHS
+            // lbl_j_index
             // 
-            this.btn_RHS.FlatAppearance.BorderSize = 10;
-            this.btn_RHS.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_RHS.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btn_RHS.Location = new System.Drawing.Point(5, 117);
-            this.btn_RHS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_RHS.Name = "btn_RHS";
-            this.btn_RHS.Size = new System.Drawing.Size(199, 36);
-            this.btn_RHS.TabIndex = 3;
-            this.btn_RHS.Text = "RHS";
-            this.btn_RHS.UseVisualStyleBackColor = true;
+            this.lbl_j_index.AutoSize = true;
+            this.lbl_j_index.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_j_index.ForeColor = System.Drawing.Color.White;
+            this.lbl_j_index.Location = new System.Drawing.Point(6, 94);
+            this.lbl_j_index.Name = "lbl_j_index";
+            this.lbl_j_index.Size = new System.Drawing.Size(146, 17);
+            this.lbl_j_index.TabIndex = 13;
+            this.lbl_j_index.Text = "Column of Variable";
+            // 
+            // lbl_i_index
+            // 
+            this.lbl_i_index.AutoSize = true;
+            this.lbl_i_index.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_i_index.ForeColor = System.Drawing.Color.White;
+            this.lbl_i_index.Location = new System.Drawing.Point(6, 30);
+            this.lbl_i_index.Name = "lbl_i_index";
+            this.lbl_i_index.Size = new System.Drawing.Size(123, 17);
+            this.lbl_i_index.TabIndex = 12;
+            this.lbl_i_index.Text = "Row of Variable";
+            // 
+            // tb_i_index
+            // 
+            this.tb_i_index.Location = new System.Drawing.Point(5, 54);
+            this.tb_i_index.Name = "tb_i_index";
+            this.tb_i_index.Size = new System.Drawing.Size(199, 34);
+            this.tb_i_index.TabIndex = 11;
+            this.tb_i_index.Text = "0";
             // 
             // mainForm
             // 
@@ -467,6 +499,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.ClientSize = new System.Drawing.Size(1352, 674);
+            this.Controls.Add(this.gp_range);
             this.Controls.Add(this.gp_sensitivity);
             this.Controls.Add(this.gb_errors);
             this.Controls.Add(this.tb_display);
@@ -481,6 +514,8 @@
             this.gb_errors.ResumeLayout(false);
             this.gb_errors.PerformLayout();
             this.gp_sensitivity.ResumeLayout(false);
+            this.gp_range.ResumeLayout(false);
+            this.gp_range.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -508,15 +543,18 @@
         private System.Windows.Forms.Label lblDVans;
         private System.Windows.Forms.Label lblZans;
         private System.Windows.Forms.GroupBox gp_sensitivity;
-        private System.Windows.Forms.Button btn_NBV;
-        private System.Windows.Forms.Button btn_Activity;
-        private System.Windows.Forms.Button btn_BV;
-        private System.Windows.Forms.Button btn_NBVC;
-        private System.Windows.Forms.Button btn_RHS;
+        private System.Windows.Forms.Button btn_range;
+        private System.Windows.Forms.Button btn_change;
         private System.Windows.Forms.Button btn_Duality;
         private System.Windows.Forms.Button btn_Shadow;
-        private System.Windows.Forms.Button btn_Constraint;
         private System.Windows.Forms.Button btn_output;
+        private System.Windows.Forms.Button btn_save_sen;
+        private System.Windows.Forms.GroupBox gp_range;
+        private System.Windows.Forms.TextBox tb_j_index;
+        private System.Windows.Forms.Label lbl_j_index;
+        private System.Windows.Forms.Label lbl_i_index;
+        private System.Windows.Forms.TextBox tb_i_index;
+        private System.Windows.Forms.RichTextBox tb_note;
     }
 }
 
